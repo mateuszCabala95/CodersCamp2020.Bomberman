@@ -1,0 +1,29 @@
+{
+  "name": "bomberman",
+  "version": "1.0.0",
+  "description": "Bomberman is a game",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier src/**/* --write",
+    "ts-prettier-check": "tslint-config-prettier-check ./tslint.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com//mateuszCabala95/CodersCamp2020.Bomberman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tslint": "^6.1.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "prettier": "2.2.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.1.3"
+  }
+}
