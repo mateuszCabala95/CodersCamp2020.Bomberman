@@ -27,6 +27,11 @@ const config: webpack.Configuration = {
     path: path.resolve(__dirname, "dist"),
     filename: "App.js"
   },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: false,
+    port: 8080
+  },
   devtool: "source-map"
 };
 
