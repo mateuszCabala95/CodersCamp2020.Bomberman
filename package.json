@@ -4,14 +4,16 @@
   "description": "Bomberman is a game",
   "main": "App.js",
   "scripts": {
-    "build:dev": "webpack",
-    "build:prod": "NODE_ENV=production webpack",
-    "build:watch": "webpack --watch",
+    "build": "webpack --watch",
+    "build:dev": "NODE_ENV=development webpack",
+    "build:dev-win": "set \"NODE_ENV=development\" && webpack",
+    "build:prod": "webpack",
     "format-force": "prettier src/**/* --write",
     "format-check": "prettier src/**/* --check",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts-prettier-check": "tslint-config-prettier-check ./tslint.json",
-    "start:dev": "webpack serve --open"
+    "start:dev": "NODE_ENV=development webpack serve --open",
+    "start:dev-win": "set \"NODE_ENV=development\" && webpack serve --open"
   },
   "repository": {
     "type": "git",
