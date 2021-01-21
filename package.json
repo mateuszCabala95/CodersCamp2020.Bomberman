@@ -10,8 +10,7 @@
     "format-check": "prettier src/**/* --check",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts-prettier-check": "tslint-config-prettier-check ./tslint.json",
-    "start:dev": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src",
-    "start": "npm run server"
+    "start": "webpack server --open"
   },
   "repository": {
     "type": "git",

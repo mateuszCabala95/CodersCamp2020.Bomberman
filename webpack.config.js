@@ -15,7 +15,7 @@ module.exports = {
     entry: {
         index: './src/index.ts',
     },
-    
+
     module: {
         rules: [
             {
@@ -45,7 +45,10 @@ module.exports = {
             }
         ],
     },
-    plugins: [
+  devServer: {
+      contentBase: "./src"
+  },
+  plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].css',
