@@ -1,2 +1,5 @@
+dist
+.cache
 node_modules
-.idea
+coverage
+.vscode
