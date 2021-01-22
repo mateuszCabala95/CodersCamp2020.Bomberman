@@ -1,5 +1,5 @@
 export default class ResourceProviderService {
-    get(resourceName: string): void {
+    get(resourceName: string): string {
         throw new Error("Not implemented")
     }
 }
