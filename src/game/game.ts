@@ -1,53 +1,45 @@
-import {Entity} from "../utils";
-import {Grid} from "../grid";
-import {Player} from "../Player";
-import {Team} from "../team";
+import { Entity } from "../utils"
+import { Grid } from "../grid"
+import { Player } from "../Player"
+import { Team } from "../team"
 
 export class Game extends Entity {
-    private _lastTimestamp = 0
+  private _lastTimestamp = 0
 
-    private _entities: Entity[] = []
+  private _entities: Entity[] = []
 
-    public get Entities(): Entity[] {
-        return this._entities
+  public get Entities(): Entity[] {
+    return this._entities
+  }
+
+  public Awake(): void {
+    super.Awake()
+    const grid = new Grid()
+    this._entities.push(
+      grid,
+      new Player(Team.A, grid.Nodes[0]),
+      new Player(Team.B, grid.Nodes[grid.Nodes.length - 1])
+    )
+
+    for (const entity of this.Entities) {
+      entity.Awake()
     }
 
-    public Awake(): void {
-        super.Awake()
+    window.requestAnimationFrame(() => {
+      this._lastTimestamp = Date.now()
+      this.Update()
+    })
+  }
 
-        // instantiate and Grid to the list of children
-        this._entities.push(new Grid(), new Player(Team.A))
+  public Update(): void {
+    const deltaTime = (Date.now() - this._lastTimestamp) / 1000
+    super.Update(deltaTime)
 
-        // awake all children
-        for (const entity of this.Entities) {
-            entity.Awake()
-        }
-
-        // Make sure Update starts after all entities are awaken
-        window.requestAnimationFrame(() => {
-            // set initial timestamp
-            this._lastTimestamp = Date.now()
-
-            // start update loop
-            this.Update()
-        })
+    for (const entity of this.Entities) {
+      entity.Update(deltaTime)
     }
 
-    public Update(): void {
-        const deltaTime = (Date.now() - this._lastTimestamp) / 1000
-
-        // update all components
-        super.Update(deltaTime)
-
-        // update all children
-        for (const entity of this.Entities) {
-            entity.Update(deltaTime)
-        }
-
-        // update the timestamp
-        this._lastTimestamp = Date.now()
-
-        // Invoke on next frame
-        window.requestAnimationFrame(() => this.Update())
-    }
+    this._lastTimestamp = Date.now()
+    window.requestAnimationFrame(() => this.Update())
+  }
 }

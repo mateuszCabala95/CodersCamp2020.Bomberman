@@ -1,39 +1,52 @@
-import { IComponent, Vector2D } from "../../../utils";
-import { CanvasLayer } from "../../../canvas-layer";
-import { Player } from "../../player";
-import { Settings } from "../../../settings";
-import { Team } from "../../../team";
+import { IComponent, Vector2D } from "../../../utils"
+import { CanvasLayer } from "../../../canvas-layer"
+import { Player } from "../../player"
+import { Settings } from "../../../settings"
+import { Team } from "../../../team"
 
 export class PlayerDrawComponent implements IComponent {
-    public Entity!: Player;
+  public Entity!: Player
 
-    private get Position(): Vector2D {
-        return new Vector2D(CanvasLayer.Foreground.Size.x / 2, CanvasLayer.Foreground.Size.y / 2)
+  constructor(entity: Player) {
+    this.Entity = entity
+  }
+
+  private get Position(): Vector2D {
+    const position = this.Entity.Position
+    if (!position) {
+      throw new Error("Attempt to draw a player that has no Position")
     }
 
-    public Awake(): void {
-        this.Clear()
-    }
+    return position
+  }
 
-    public Update(deltaTime: number): void {
-        this.Clear()
-        this.Draw()
-    }
+  public Awake(): void {
+    this.Clear()
+  }
 
-    private Draw(): void {
-        const colors = Settings.players.colors
-        const color = this.Entity.Team === Team.A ? colors.a : colors.b
+  public Update(deltaTime: number): void {
+    this.Clear()
+    this.Draw()
+  }
 
-        CanvasLayer.Foreground.FillCircle(this.Position, Settings.players.radius, color)
-    }
+  private Draw(): void {
+    const colors = Settings.players.colors
+    const color = this.Entity.Team === Team.A ? colors.a : colors.b
 
-    private Clear(): void {
-        CanvasLayer.Foreground.ClearRect(
-            new Vector2D(
-                this.Position.x - Settings.grid.nodeSize / 2,
-                this.Position.y - Settings.grid.nodeSize / 2
-            ),
-            new Vector2D(Settings.grid.nodeSize, Settings.grid.nodeSize)
-        )
-    }
+    CanvasLayer.Foreground.FillCircle(
+      this.Position,
+      Settings.players.radius,
+      color
+    )
+  }
+
+  private Clear(): void {
+    CanvasLayer.Foreground.ClearRect(
+      new Vector2D(
+        this.Position.x - Settings.grid.nodeSize / 2,
+        this.Position.y - Settings.grid.nodeSize / 2
+      ),
+      new Vector2D(Settings.grid.nodeSize, Settings.grid.nodeSize)
+    )
+  }
 }
