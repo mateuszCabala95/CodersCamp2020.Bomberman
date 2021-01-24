@@ -1,6 +1,7 @@
-import { Entity} from "../utils";
-import { Settings } from "../settings";
-import { Grid } from "../grid";
+import {Entity} from "../utils";
+import {Grid} from "../grid";
+import {Player} from "../Player";
+import {Team} from "../team";
 
 export class Game extends Entity {
     private _lastTimestamp = 0
@@ -15,7 +16,7 @@ export class Game extends Entity {
         super.Awake()
 
         // instantiate and Grid to the list of children
-        this._entities.push(new Grid())
+        this._entities.push(new Grid(), new Player(Team.A))
 
         // awake all children
         for (const entity of this.Entities) {
