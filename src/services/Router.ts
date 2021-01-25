@@ -1,35 +1,29 @@
 export default class Router {
-    path: Location
     appContainer: HTMLDivElement
 
-    constructor() {
+
+
+    initVariable = () => {
         this.appContainer = document.querySelector("#app")
-        this.path = window.location
-        this.render()
     }
 
 
-    initPage = (): void => {
-        switch (this.path.hash) {
-            //main page
+    initPage = (e: HashChangeEvent): void => {
+        switch (e.target.location.hash) {
             case("/" || "") : {
-                //load main page
                 this.appContainer.innerHTML = ""
                 break
             }
 
-            //game window
             case("/game"): {
                 this.appContainer.innerHTML = ""
                 break
             }
 
-            //table with results
             case("/finish") : {
                 this.appContainer.innerHTML = ""
                 break
             }
-            // in case wrong URL should redirect to main page
             default: {
                 window.location.pathname = "/"
                 window.location.reload()
@@ -40,8 +34,9 @@ export default class Router {
     }
 
     render = (): void => {
-        window.addEventListener("hashchange", () => {
-            this.initPage()
+        this.initVariable()
+        window.addEventListener("hashchange", (e) => {
+            this.initPage(e)
         })
     }
 
