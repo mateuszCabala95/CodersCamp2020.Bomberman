@@ -7,7 +7,7 @@
     "build": "webpack",
     "watch": "npm run build -- --watch",
     "start": "webpack serve --open",
-     "test": "jest"
+    "test": "jest"
   },
   "husky": {
     "hooks": {
@@ -19,7 +19,6 @@
       "prettier --write",
       "git add"
     ]
-
   },
   "repository": {
     "type": "git",
