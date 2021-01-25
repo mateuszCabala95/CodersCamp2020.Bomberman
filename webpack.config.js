@@ -19,8 +19,11 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: [
+                  { loader: "webpack-modernizr-loader" }, 
+                  'ts-loader'
+                ],
+                test: /\.modernizrrc\.ts$/,
                 exclude: /node_modules/,
             },
             {
@@ -65,6 +68,9 @@ module.exports = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.scss']
+        extensions: ['.ts', '.tsx', '.js', '.scss'],
+        alias: {
+          modernizr$: path.resolve(__dirname, "/src/.modernizrrc.ts")
+        }
     }
 };
