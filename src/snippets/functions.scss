@@ -1,0 +1,77 @@
+@function array-get-warning($warn, $get, $key) {
+    @if $get == null {
+        @warn "Map has no value for key search `#{$warn}`";
+    }
+    @else if type-of($get) != 'map' {
+        @warn "Non-map value found for key search `#{$warn}`, cannot search for key `#{$key}`";
+    }
+    @return null;
+}
+
+@function array-get($map, $keys...) {
+    @if length($keys) == 1 {
+        $keys: nth($keys, 1);
+    }
+
+    $warn: "#{nth($keys, 1)}";
+    $length: length($keys);
+    $get: map-get($map, nth($keys, 1));
+
+    @if $length > 1 {
+        @for $i from 2 through $length {
+            @if $get != null and type-of($get) == 'map' {
+                $warn: $warn + "->#{nth($keys, $i)}";
+                $get: map-get($get, nth($keys, $i));
+
+                @if $get == null {
+                    @return null;
+                }
+            }
+            @else {
+                @return array-get-warning($warn, $get, nth($keys, $i));
+            }
+        }
+    }
+
+    @return $get;
+}
+
+
+@function get-brand-color($i: null) {
+    $base: array-get($m--state-colors, brand, base);
+
+    @if $i == "+" {
+        $base: darken($base, 5%);
+    }
+    @if $i == "++" {
+        $base: darken($base, 10%);
+    }
+    @if $i == "-" {
+        $base: lighten($base, 5%);
+    }
+    @if $i == "--" {
+        $base: lighten($base, 5%);
+    }
+
+    @return $base;
+}
+
+@function get-state-color($name, $type: base) {
+    
+    @return array-get($m--state-colors, $name, $type );
+}
+
+@function get-font-size($type, $size: base) {
+    @if ($size == "+") {
+        $size: up1
+    }
+    @if ($size == "-") {
+        $size: down1
+    }
+
+    @return array-get($m--font-sizes, $type, $size );
+}
+
+@function get-font-weight($type, $size: base) {
+    @return array-get($m--font-weights, $type)
+}

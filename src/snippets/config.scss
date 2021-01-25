@@ -1,0 +1,41 @@
+$m--layout-breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 1024px,
+    xxl: 1400px,
+    xxxl: 1600px
+)!default;
+
+$m--brand-color: #474a87!default;
+$m--brand-inverse-color: #878447 !default; 
+
+$m--state-color: (
+    brand: (
+        base: $m--brand-color,
+        inverse: $m--brand-inverse-color
+    ),
+    metal: (
+        base: #827a88,
+        inverse: #fff
+    ),
+    danger: (
+        base: #f4516c,
+        inverse: #fff
+    )
+)!default;
+
+$m--font-sizes: (
+    regular: (
+        down1: 0.85rem,
+        base: 1rem,
+        up1: 1.1rem
+    )
+)!default;
+
+$m--font-weights: (
+    thin: 200,
+    normal: 300,
+    bold: 400,
+    bolder: 500,
+    boldest: 600
+)!default;
