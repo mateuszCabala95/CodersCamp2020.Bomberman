@@ -25,8 +25,8 @@ export default class Joystick {
 
 	constructor(container: string) {
 		this.objContainer = document.getElementById(container)!;
-		this.objContainer.appendChild(this.canvas);
 		this.addCanvasAttribute()
+		this.objContainer.appendChild(this.canvas);
 		this.context = this.canvas.getContext("2d")!; 
 		this.internalRadius = (this.canvas.width-((this.canvas.width/2)+10))/2;
 		this.maxMoveStick = this.internalRadius + 5;
@@ -42,29 +42,30 @@ export default class Joystick {
 		this.canvasParent = this.canvas.offsetParent as HTMLElement;
 	}
 
-	addCanvasAttribute(): void {
+	private addCanvasAttribute(): void {
 		this.canvas.id = "joystick";
 		this.canvas.width = this.objContainer.clientWidth;
 		this.canvas.height = this.objContainer.clientHeight;
+		
 	}
 
-	render(): void{
+	public render(): void{
 		if("ontouchstart" in document.documentElement){
-			this.canvas.addEventListener("touchstart", this.onTouchStart, false);
-			this.canvas.addEventListener("touchmove", this.onTouchMove, false);
-			this.canvas.addEventListener("touchend", this.onTouchEnd, false);
+			this.canvas.addEventListener("touchstart", (e) => this.onTouchStart(e), false);
+			this.canvas.addEventListener("touchmove", (e) => this.onTouchMove(e), false);
+			this.canvas.addEventListener("touchend", (e) => this.onTouchEnd(e), false);
 		}
 		else{
-			this.canvas.addEventListener("mousedown", this.onMouseDown, false);
-			this.canvas.addEventListener("mousemove", this.onMouseMove, false);
-			this.canvas.addEventListener("mouseup", this.onMouseUp, false);
+			this.canvas.addEventListener("mousedown", (e) => this.onMouseDown(e), false);
+			this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e), false);
+			this.canvas.addEventListener("mouseup", (e) => this.onMouseUp(e), false);
 		}
 		
 		this.drawExternal();
 		this.drawInternal();
 	}
     
-	drawExternal(): void {
+	private drawExternal(): void {
 		this.context.beginPath();
 		this.context.arc(this.centerX, this.centerY, this.externalRadius, 0, this.circumference, false);
 		this.context.lineWidth = this.externalLineWidth;
@@ -72,7 +73,7 @@ export default class Joystick {
 		this.context.stroke();
 	}
 
-	drawInternal(): void {
+	private drawInternal(): void {
 		this.context.beginPath();
 		if(this.movedX < this.internalRadius){ 
 			this.movedX = this.maxMoveStick;
@@ -97,16 +98,16 @@ export default class Joystick {
 		this.context.stroke();
 	}
 	
-	onTouchStart(event: TouchEvent): void {
+	private onTouchStart(event: TouchEvent): void {
 		this.pressed = true;
 	}
 
-	onTouchMove(event: TouchEvent): void {
+	private onTouchMove(event: TouchEvent): void {
 		event.preventDefault();
 		if(this.pressed == true && event.targetTouches[0].target == this.canvas){
 			this.movedX = event.targetTouches[0].pageX;
 			this.movedY = event.targetTouches[0].pageY;
-			if(this.canvasParent.tagName.toUpperCase() === "BODY"){
+			if(String(this.canvasParent.tagName).toUpperCase() === "BODY"){
 				this.movedX -= this.canvas.offsetLeft;
 				this.movedY -= this.canvas.offsetTop;
 			}
@@ -120,7 +121,7 @@ export default class Joystick {
 		}
 	} 
 
-	onTouchEnd(event: TouchEvent): void {
+	private onTouchEnd(event: TouchEvent): void {
 		this.pressed = false;
 		if(this.autoReturnToCenter){
 			this.movedX = this.centerX;
@@ -132,11 +133,11 @@ export default class Joystick {
 		//canvas.unbind('touchmove');
 	}
 
-	onMouseDown(event: MouseEvent): void {
+	private onMouseDown(event: MouseEvent): void {
 		this.pressed = true;
     }
 
-	onMouseMove(event: MouseEvent): void {
+	private onMouseMove(event: MouseEvent): void {
 		if(this.pressed === true){
 			this.movedX = event.pageX;
 			this.movedY = event.pageY;
@@ -154,7 +155,7 @@ export default class Joystick {
 		}
 	}
 
-	onMouseUp(event: MouseEvent): void {
+	private onMouseUp(event: MouseEvent): void {
 		this.pressed = false;
 		if(this.autoReturnToCenter){
 			this.movedX = this.centerX;
@@ -166,31 +167,31 @@ export default class Joystick {
 		//canvas.unbind('mousemove');
 	}
 
-	GetWidth(): number {
+	public GetWidth(): number {
 		return this.canvas.width;
 	}
 	
-    GetHeight(): number {
+    public GetHeight(): number {
 		return this.canvas.height;
 	}
 	
-	GetPosX(): number {
+	public GetPosX(): number {
 		return this.movedX;
 	}
 	
-	GetPosY(): number {
+	public GetPosY(): number {
 		return this.movedY;
 	}
 	
-	GetX(): string {
+	public GetX(): string {
 		return (100*((this.movedX - this.centerX)/this.maxMoveStick)).toFixed();
 	}
 
-	GetY(): string {
+	public GetY(): string {
 		return ((100*((this.movedY - this.centerY)/this.maxMoveStick))*-1).toFixed();
 	}
 	
-	GetDir(): string {
+	public GetDir(): string {
 		let result = "";
 		const orizontal = this.movedX - this.centerX;
 		const vertical = this.movedY - this.centerY;
@@ -223,6 +224,5 @@ export default class Joystick {
 		}
 		
 		return result;
-	}
-	   
+	}   
 }
