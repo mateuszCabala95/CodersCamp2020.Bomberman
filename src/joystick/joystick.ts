@@ -130,7 +130,6 @@ export default class Joystick {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawExternal();
 		this.drawInternal();
-		//canvas.unbind('touchmove');
 	}
 
 	private onMouseDown(event: MouseEvent): void {
@@ -164,34 +163,33 @@ export default class Joystick {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawExternal();
 		this.drawInternal();
-		//canvas.unbind('mousemove');
 	}
 
-	public GetWidth(): number {
+	public get width(): number {
 		return this.canvas.width;
 	}
 	
-    public GetHeight(): number {
+    public get height(): number {
 		return this.canvas.height;
 	}
 	
-	public GetPosX(): number {
+	public get posX(): number {
 		return this.movedX;
 	}
 	
-	public GetPosY(): number {
+	public get posY(): number {
 		return this.movedY;
 	}
 	
-	public GetX(): string {
+	public get x(): string {
 		return (100*((this.movedX - this.centerX)/this.maxMoveStick)).toFixed();
 	}
 
-	public GetY(): string {
+	public get y(): string {
 		return ((100*((this.movedY - this.centerY)/this.maxMoveStick))*-1).toFixed();
 	}
 	
-	public GetDir(): string {
+	public get dir(): string {
 		let result = "";
 		const orizontal = this.movedX - this.centerX;
 		const vertical = this.movedY - this.centerY;
