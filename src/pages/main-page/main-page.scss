@@ -1,0 +1,48 @@
+$blue: #1A90FF;
+
+.main-page{
+  background-color: #292929;
+  position: relative;
+  font-family: Lato, sans-serif;
+}
+.main-page {
+  &__wrapper {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__title{
+    font-family: Sarpanch, sans-serif;
+    collapse: $blue;
+  }
+
+  &__special{
+    color: white;
+  }
+
+}
+
+.player{
+  &__wrapper{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    min-height: 50vh;
+  }
+
+  &__name{
+    position: absolute;
+    z-index: 10;
+  }
+  &__name:nth-of-type(2){
+    z-index: -10;
+  }
+
+  &__start{
+    background-color: $blue;
+    color: white;
+    font-family: Lato, sans-serif;
+  }
+}
