@@ -1,3 +1,5 @@
+import { Game } from "../game";
+
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
 
@@ -18,6 +20,7 @@ export default class Router {
 
       case "/game": {
         if (this.appContainer) {
+            new Game().Awake()
           this.appContainer.innerHTML = ""
         }
         break
