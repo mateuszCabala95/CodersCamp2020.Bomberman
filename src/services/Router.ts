@@ -1,27 +1,33 @@
 export default class Router {
-    appContainer: HTMLDivElement
+    appContainer: Nullable<HTMLDivElement | undefined>
 
 
 
     initVariable = () => {
-        this.appContainer = document.querySelector("#app")
+        this.appContainer = document.querySelector("#app") as Nullable<HTMLDivElement>
     }
 
 
-    initPage = (e: HashChangeEvent): void => {
-        switch (e.target.location.hash) {
+    initPage = (e: any): void => {
+        switch (e.target?.location.hash) {
             case("/" || "") : {
-                this.appContainer.innerHTML = ""
+                if(this.appContainer) {
+                    this.appContainer.innerHTML = ""
+                }
                 break
             }
 
             case("/game"): {
-                this.appContainer.innerHTML = ""
+                if(this.appContainer) {
+                    this.appContainer.innerHTML = ""
+                }
                 break
             }
 
             case("/finish") : {
-                this.appContainer.innerHTML = ""
+                if(this.appContainer) {
+                    this.appContainer.innerHTML = ""
+                }
                 break
             }
             default: {
