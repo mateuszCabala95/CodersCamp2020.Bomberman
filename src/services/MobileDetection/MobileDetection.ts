@@ -6,6 +6,7 @@ export default class MobileDetectionService {
     }
 
     phoneOrientation() : string {
+        console.log(screen.orientation)
         return ((screen.orientation.type === "landscape-primary") ? "landscape" : "portrait")
     }
 }
