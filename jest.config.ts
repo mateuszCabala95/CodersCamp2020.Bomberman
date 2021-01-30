@@ -11,4 +11,8 @@ export default {
   testEnvironment: "node",
 
   testMatch: ["**/*.spec.(js|ts)"],
+
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
 }
