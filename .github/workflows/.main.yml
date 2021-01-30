@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm ci
+      - run: npm install
       - run: npm run lint && npm run format-check
       - run: npm run test:cov
       - run: npm run build
