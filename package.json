@@ -8,7 +8,7 @@
     "watch": "npm run build -- --watch",
     "start": "webpack serve --open",
     "test": "jest",
-    "test:cov": "jest --coverage",
+    "test:cov": "jest --coverage --passWithNoTests",
     "format-check": "prettier --check \"src/**/*\"",
     "prettify": "prettier --loglevel warn --write \"src/**/*\"",
     "lint": "eslint \"src/**/*.{js,json,jsx,ts,tsx,html}\"",
