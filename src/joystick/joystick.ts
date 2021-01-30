@@ -5,9 +5,9 @@ export default class Joystick {
     externalLineWidth = 2;
     externalStrokeColor = "#008000";
     autoReturnToCenter = true;
-	objContainer: HTMLElement;
+	objContainer: Nullable<HTMLElement>;
 	canvas = document.createElement("canvas");
-	context: CanvasRenderingContext2D;
+	context: Nullable<CanvasRenderingContext2D>;
 	pressed = false;
 	circumference = 2 * Math.PI;
 	internalRadius: number;
@@ -24,18 +24,18 @@ export default class Joystick {
 	canvasParent: HTMLElement;
 
 	constructor(container: string) {
-		this.objContainer = document.getElementById(container)!;
+		this.objContainer = document.getElementById(container);
 		this.addCanvasAttribute()
-		this.objContainer.appendChild(this.canvas);
-		this.context = this.canvas.getContext("2d")!; 
+		this.objContainer?.appendChild(this.canvas);
+		this.context = this.canvas.getContext("2d"); 
 		this.internalRadius = (this.canvas.width-((this.canvas.width/2)+10))/2;
 		this.maxMoveStick = this.internalRadius + 5;
-		this.centerX = this.objContainer.clientWidth/2;
-		this.centerY = this.objContainer.clientHeight/2;
+		this.centerX = (this.objContainer?.clientWidth || 0)/2;
+		this.centerY = (this.objContainer?.clientHeight || 0) /2;
 		this.externalRadius = this.internalRadius + 30;
-		this.directionHorizontalLimitPos = this.objContainer.clientWidth / 10;
+		this.directionHorizontalLimitPos = (this.objContainer?.clientWidth || 0) / 10;
 		this.directionHorizontalLimitNeg = this.directionHorizontalLimitPos * -1;
-		this.directionVerticalLimitPos = this.objContainer.clientHeight / 10;
+		this.directionVerticalLimitPos = (this.objContainer?.clientHeight || 0) / 10;
 		this.directionVerticalLimitNeg = this.directionVerticalLimitPos * -1;
 		this.movedX = this.centerX;
 		this.movedY = this.centerY;
@@ -44,21 +44,21 @@ export default class Joystick {
 
 	private addCanvasAttribute(): void {
 		this.canvas.id = "joystick";
-		this.canvas.width = this.objContainer.clientWidth;
-		this.canvas.height = this.objContainer.clientHeight;
+		this.canvas.width = this.objContainer?.clientWidth || 0;
+		this.canvas.height = this.objContainer?.clientHeight || 0;
 		
 	}
 
 	public render(): void{
 		if("ontouchstart" in document.documentElement){
-			this.canvas.addEventListener("touchstart", (e) => this.onTouchStart(e), false);
+			this.canvas.addEventListener("touchstart", () => this.onTouchStart(), false);
 			this.canvas.addEventListener("touchmove", (e) => this.onTouchMove(e), false);
-			this.canvas.addEventListener("touchend", (e) => this.onTouchEnd(e), false);
+			this.canvas.addEventListener("touchend", () => this.onTouchEnd(), false);
 		}
 		else{
-			this.canvas.addEventListener("mousedown", (e) => this.onMouseDown(e), false);
+			this.canvas.addEventListener("mousedown", () => this.onMouseDown(), false);
 			this.canvas.addEventListener("mousemove", (e) => this.onMouseMove(e), false);
-			this.canvas.addEventListener("mouseup", (e) => this.onMouseUp(e), false);
+			this.canvas.addEventListener("mouseup", () => this.onMouseUp(), false);
 		}
 		
 		this.drawExternal();
@@ -66,15 +66,17 @@ export default class Joystick {
 	}
     
 	private drawExternal(): void {
-		this.context.beginPath();
-		this.context.arc(this.centerX, this.centerY, this.externalRadius, 0, this.circumference, false);
-		this.context.lineWidth = this.externalLineWidth;
-		this.context.strokeStyle = this.externalStrokeColor;
-		this.context.stroke();
+		if(this.context) {
+			this.context.beginPath();
+			this.context.arc(this.centerX, this.centerY, this.externalRadius, 0, this.circumference, false);
+			this.context.lineWidth = this.externalLineWidth;
+			this.context.strokeStyle = this.externalStrokeColor;
+			this.context.stroke();
+		}
 	}
 
 	private drawInternal(): void {
-		this.context.beginPath();
+		this.context?.beginPath();
 		if(this.movedX < this.internalRadius){ 
 			this.movedX = this.maxMoveStick;
 		}
@@ -87,18 +89,20 @@ export default class Joystick {
 		if((this.movedY + this.internalRadius) > this.canvas.height){ 
 			this.movedY = this.canvas.height-(this.maxMoveStick); 
 		}
-		this.context.arc(this.movedX, this.movedY, this.internalRadius, 0, this.circumference, false);
-		const grd: CanvasGradient = this.context.createRadialGradient(this.centerX, this.centerY, 5, this.centerX, this.centerY, 200);
-		grd.addColorStop(0, this.internalFillColor);
-		grd.addColorStop(1, this.internalStrokeColor);
-		this.context.fillStyle = grd;
-		this.context.fill();
-		this.context.lineWidth = this.internalLineWidth;
-		this.context.strokeStyle = this.internalStrokeColor;
-		this.context.stroke();
+		this.context?.arc(this.movedX, this.movedY, this.internalRadius, 0, this.circumference, false);
+		if(this.context) {
+			const grd: CanvasGradient = this.context.createRadialGradient(this.centerX, this.centerY, 5, this.centerX, this.centerY, 200);
+			grd.addColorStop(0, this.internalFillColor);
+			grd.addColorStop(1, this.internalStrokeColor);
+			this.context.fillStyle = grd;
+			this.context.fill();
+			this.context.lineWidth = this.internalLineWidth;
+			this.context.strokeStyle = this.internalStrokeColor;
+			this.context.stroke();
+		}
 	}
 	
-	private onTouchStart(event: TouchEvent): void {
+	private onTouchStart(): void {
 		this.pressed = true;
 	}
 
@@ -115,24 +119,24 @@ export default class Joystick {
 				this.movedX -= this.canvasParent.offsetLeft;
 				this.movedY -= this.canvasParent.offsetTop;
 			}
-			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.drawExternal();
 			this.drawInternal();
 		}
 	} 
 
-	private onTouchEnd(event: TouchEvent): void {
+	private onTouchEnd(): void {
 		this.pressed = false;
 		if(this.autoReturnToCenter){
 			this.movedX = this.centerX;
 			this.movedY = this.centerY;
 		}
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawExternal();
 		this.drawInternal();
 	}
 
-	private onMouseDown(event: MouseEvent): void {
+	private onMouseDown(): void {
 		this.pressed = true;
     }
 
@@ -148,19 +152,19 @@ export default class Joystick {
 				this.movedX -= this.canvasParent.offsetLeft;
 				this.movedY -= this.canvasParent.offsetTop;
 			}
-			this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+			this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 			this.drawExternal();
 			this.drawInternal();
 		}
 	}
 
-	private onMouseUp(event: MouseEvent): void {
+	private onMouseUp(): void {
 		this.pressed = false;
 		if(this.autoReturnToCenter){
 			this.movedX = this.centerX;
 			this.movedY = this.centerY;
 		}
-		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.context?.clearRect(0, 0, this.canvas.width, this.canvas.height);
 		this.drawExternal();
 		this.drawInternal();
 	}

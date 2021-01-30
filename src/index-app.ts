@@ -3,7 +3,7 @@ import provider from "./services/Provider"
 import ConsoleReporting from "./services/ErrorReporting/ConsoleReporting"
 import AppResourceProvider from "./services/ResourceProvider";
 
-const registerDependencyFunc = () => {
+const registerDependencyFunc = (): void => {
     provider.provide("errorReporting", new ConsoleReporting())
     provider.provide("resourceProvider", new AppResourceProvider())
 }

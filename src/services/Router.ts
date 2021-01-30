@@ -3,14 +3,14 @@ export default class Router {
 
 
 
-    initVariable = () => {
+    initVariable = (): void => {
         this.appContainer = document.querySelector("#app") as Nullable<HTMLDivElement>
     }
 
 
-    initPage = (e: any): void => {
-        switch (e.target?.location.hash) {
-            case("/" || "") : {
+    initPage = (e: HashChangeEvent): void => {
+        switch (e.newURL) {
+            case("/" || ""): {
                 if(this.appContainer) {
                     this.appContainer.innerHTML = ""
                 }
@@ -24,7 +24,7 @@ export default class Router {
                 break
             }
 
-            case("/finish") : {
+            case("/finish"): {
                 if(this.appContainer) {
                     this.appContainer.innerHTML = ""
                 }
