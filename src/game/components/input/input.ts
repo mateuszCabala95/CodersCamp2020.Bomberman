@@ -8,8 +8,8 @@ export class GameInputComponent implements IComponent {
     document.body.addEventListener("keydown", this.HandleKeyInput.bind(this))
   }
 
-  private HandleKeyInput(e: KeyboardEvent) {
-    let locomotionKeys = [
+  private HandleKeyInput(e: KeyboardEvent): void {
+    const locomotionKeys = [
       "ArrowUp",
       "ArrowDown",
       "ArrowRight",
@@ -22,7 +22,6 @@ export class GameInputComponent implements IComponent {
     if (!(locomotionKeys.indexOf(e.code) > -1)) {
       return
     }
-    console.log("Player moves")
   }
 
   public Update(deltaTime: number): void {

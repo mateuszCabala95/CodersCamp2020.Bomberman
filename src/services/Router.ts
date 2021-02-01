@@ -11,7 +11,6 @@ export default class Router {
 
   initPage = (): void => {
     const hash = window.location.hash.split("#")[1]
-    console.log(hash)
 
     switch (hash) {
       case "/" || "": {
@@ -22,10 +21,8 @@ export default class Router {
       }
 
       case "game": {
-        console.log(12)
         if (this.appContainer) {
           new Game().Awake()
-          console.log(this.appContainer)
         }
         break
       }
