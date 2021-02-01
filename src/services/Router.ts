@@ -1,3 +1,5 @@
+import MainPage from "../pages/mainPage/MainPage"
+
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
 
@@ -9,28 +11,26 @@ export default class Router {
 
   initPage = (): void => {
     switch (window.location.hash) {
-      case "/" || "": {
+      case "" : {
+        new MainPage().render()
+        break
+      }
+
+      case "#game": {
         if (this.appContainer) {
-          this.appContainer.innerHTML = ""
+          this.appContainer.innerHTML = "work game"
         }
         break
       }
 
-      case "/game": {
-        if (this.appContainer) {
-          this.appContainer.innerHTML = ""
-        }
-        break
-      }
-
-      case "/finish": {
+      case "#finish": {
         if (this.appContainer) {
           this.appContainer.innerHTML = ""
         }
         break
       }
       default: {
-        window.location.pathname = "/"
+        window.location.hash = ""
         window.location.reload()
         break
       }
@@ -39,8 +39,10 @@ export default class Router {
 
   render = (): void => {
     this.initVariable()
+    new MainPage().render()
     window.addEventListener("hashchange", () => {
       this.initPage()
     })
+
   }
 }
