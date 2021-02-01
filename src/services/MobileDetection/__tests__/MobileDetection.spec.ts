@@ -1,5 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { isMobile } from "mobile-device-detect"
 import MobileDetectionService from "../MobileDetection"
 
 const mobileDetectionService = new MobileDetectionService()
