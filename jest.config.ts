@@ -8,7 +8,7 @@ export default {
 
   roots: ["<rootDir>/src"],
 
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   testMatch: ["**/*.spec.(js|ts)"],
 
