@@ -1,4 +1,4 @@
-import { Game } from "../game";
+import { Game } from "../game"
 
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
@@ -10,7 +10,10 @@ export default class Router {
   }
 
   initPage = (): void => {
-    switch (window.location.hash) {
+    const hash = window.location.hash.split("#")[1]
+    console.log(hash)
+
+    switch (hash) {
       case "/" || "": {
         if (this.appContainer) {
           this.appContainer.innerHTML = ""
@@ -18,15 +21,16 @@ export default class Router {
         break
       }
 
-      case "/game": {
+      case "game": {
+        console.log(12)
         if (this.appContainer) {
-            new Game().Awake()
-          this.appContainer.innerHTML = ""
+          new Game().Awake()
+          console.log(this.appContainer)
         }
         break
       }
 
-      case "/finish": {
+      case "finish": {
         if (this.appContainer) {
           this.appContainer.innerHTML = ""
         }
