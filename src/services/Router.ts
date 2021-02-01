@@ -7,8 +7,8 @@ export default class Router {
     ) as Nullable<HTMLDivElement>
   }
 
-  initPage = (e: HashChangeEvent): void => {
-    switch (e.newURL) {
+  initPage = (): void => {
+    switch (window.location.hash) {
       case "/" || "": {
         if (this.appContainer) {
           this.appContainer.innerHTML = ""
@@ -39,8 +39,8 @@ export default class Router {
 
   render = (): void => {
     this.initVariable()
-    window.addEventListener("hashchange", (e) => {
-      this.initPage(e)
+    window.addEventListener("hashchange", () => {
+      this.initPage()
     })
   }
 }
