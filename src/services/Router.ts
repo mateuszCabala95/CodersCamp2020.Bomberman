@@ -1,6 +1,9 @@
 import MainPage from "../pages/mainPage/MainPage"
 import { Game } from "../game"
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const mainPage = require("../pages/mainPage/main-page.html")
+
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
 
@@ -12,12 +15,11 @@ export default class Router {
 
   initPage = (): void => {
     const hash = window.location.hash.split("#")[1]
-
     switch (hash) {
       case "/" || "": {
         if (this.appContainer) {
-          this.appContainer.innerHTML = ""
-          new MainPage.render()
+          this.appContainer.innerHTML = mainPage
+          new MainPage().render()
         }
         break
       }
@@ -44,10 +46,9 @@ export default class Router {
 
   render = (): void => {
     this.initVariable()
-    new MainPage().render()
-    window.addEventListener("hashchange", () => {
+    window.addEventListener("hashchange", (e) => {
       this.initPage()
+      console.log(e)
     })
-
   }
 }

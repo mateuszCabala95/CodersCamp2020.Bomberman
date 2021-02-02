@@ -1,17 +1,15 @@
 import "../mainPage/main-page.scss"
 import Typed from "typed.js"
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const mainPage = require("./main-page.html")
 
 export default class MainPage {
 
   player1Nickname = ""
   player2Nickname = ""
-  private is2Players = false
-  private player1Input: Nullable<HTMLInputElement> | undefined
-  private player2Input: Nullable<HTMLInputElement> | undefined
-  private is2PlayersCheckbox: Nullable<HTMLInputElement> | undefined
-  private playersForm: Nullable<HTMLFormElement> | undefined
+  is2Players = false
+  player1Input: Nullable<HTMLInputElement> | undefined
+  player2Input: Nullable<HTMLInputElement> | undefined
+  is2PlayersCheckbox: Nullable<HTMLInputElement> | undefined
+  playersForm: Nullable<HTMLFormElement> | undefined
   descriptions: string[] = ["- Brick walls -", "- Collect bonuses -", " - Explode your enemies -"]
   typedOptions = {
     strings: [...this.descriptions],
@@ -29,9 +27,9 @@ export default class MainPage {
   }
 
   private initEventListeners = (): void => {
-    this.checkIs2Players()
     this.getPlayer1Name()
     this.getPlayer2Name()
+    this.checkIs2Players()
     this.sendForm()
   }
 
@@ -65,17 +63,16 @@ export default class MainPage {
     this.playersForm?.addEventListener("submit", (e) => {
       e.preventDefault()
       localStorage.setItem("Player1Name", this.player1Nickname)
+      localStorage.setItem("isTwoPlayers", String(this.is2Players))
+
       if (this.is2Players) {
         localStorage.setItem("Player2Name", this.player2Nickname)
-        localStorage.setItem("TwoPlayers", String(this.is2Players))
       }
       window.location.hash = "game"
     })
   }
 
-  render = (): void => {
-    const app: Nullable<HTMLDivElement> = document.querySelector("#app") as HTMLDivElement
-    app.innerHTML = mainPage
+  render (): void{
     this.initVariables()
     this.initEventListeners()
     const typed = new Typed("#description", this.typedOptions)
