@@ -16,7 +16,7 @@ export default class Router {
   initPage = (): void => {
     const hash = window.location.hash.split("#")[1]
     switch (hash) {
-      case "/" || "": {
+      case "main"  : {
         if (this.appContainer) {
           this.appContainer.innerHTML = mainPage
           new MainPage().render()
@@ -26,6 +26,7 @@ export default class Router {
 
       case "game": {
         if (this.appContainer) {
+          this.appContainer.innerHTML = ''
           new Game().Awake()
         }
         break
@@ -37,8 +38,7 @@ export default class Router {
         break
       }
       default: {
-        window.location.hash = ""
-        window.location.reload()
+        window.location.hash = "main"
         break
       }
     }
@@ -46,9 +46,9 @@ export default class Router {
 
   render = (): void => {
     this.initVariable()
-    window.addEventListener("hashchange", (e) => {
+    window.location.hash = '#'
+    window.addEventListener("hashchange", () => {
       this.initPage()
-      console.log(e)
     })
   }
 }
