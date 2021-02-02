@@ -11,7 +11,7 @@
     "test": "jest --passWithNoTests",
     "test:cov": "jest --coverage --passWithNoTests",
     "format-check": "prettier --check \"src/**/*\"",
-    "prettify": "prettier --loglevel wargit config core.autocrlf truen --write \"src/**/*\"",
+    "prettify": "prettier --loglevel warn --write \"src/**/*\"",
     "lint": "eslint \"src/**/*.{js,json,jsx,ts,tsx,html}\"",
     "lint:fix": "eslint \"src/**/*.{js,json,css,jsx,ts,tsx,html}\" --fix"
   },
