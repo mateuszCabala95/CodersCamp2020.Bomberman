@@ -1,4 +1,5 @@
 import MainPage from "../pages/mainPage/MainPage"
+import { Game } from "../game"
 
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
@@ -10,20 +11,24 @@ export default class Router {
   }
 
   initPage = (): void => {
-    switch (window.location.hash) {
-      case "" : {
-        new MainPage().render()
-        break
-      }
+    const hash = window.location.hash.split("#")[1]
 
-      case "#game": {
+    switch (hash) {
+      case "/" || "": {
         if (this.appContainer) {
-          this.appContainer.innerHTML = "work game"
+          this.appContainer.innerHTML = ""
+          new MainPage.render()
         }
         break
       }
 
-      case "#finish": {
+      case "game": {
+        if (this.appContainer) {
+          new Game().Awake()
+        }
+        break
+      }
+      case "finish": {
         if (this.appContainer) {
           this.appContainer.innerHTML = ""
         }
