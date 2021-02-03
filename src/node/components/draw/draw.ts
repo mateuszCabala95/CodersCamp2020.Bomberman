@@ -1,38 +1,37 @@
-import { IComponent } from "../../../utils";
-import { Node } from '../../node'
-import { Settings } from "../../../settings";
-import { CanvasLayer } from "../../../canvas-layer";
+import { IComponent } from "../../../utils"
+import { Node } from "../../node"
+import { Settings } from "../../../settings"
+import { CanvasLayer } from "../../../canvas-layer"
 
 export class NodeDrawComponent implements IComponent {
-    get Entity(): Node {
-        return this._Entity;
-    }
+  get Entity(): Node {
+    return this._Entity
+  }
 
-    set Entity(value: Node) {
-        this._Entity = value;
-    }
+  set Entity(value: Node) {
+    this._Entity = value
+  }
 
-    private _Entity!: Node;
+  private _Entity!: Node
 
-    public Awake(): void {
-        this.Clear()
-    }
+  public Awake(): void {
+    this.Clear()
+  }
 
-    public Update(deltaTime: number): void {
-        this.Clear()
-        this.Draw()
-    }
+  public Update(deltaTime: number): void {
+    this.Clear()
+    this.Draw()
+  }
 
-    private Draw(): void {
-        CanvasLayer.Background.FillRect(
-            this._Entity.Start,
-            this._Entity.Size,
-            Settings.grid.color
-        )
-    }
+  private Draw(): void {
+    CanvasLayer.Background.FillRect(
+      this._Entity.Start,
+      this._Entity.Size,
+      Settings.grid.color
+    )
+  }
 
-    private Clear(): void {
-        CanvasLayer.Background.ClearRect(this._Entity.Start, this._Entity.Size)
-    }
-
+  private Clear(): void {
+    CanvasLayer.Background.ClearRect(this._Entity.Start, this._Entity.Size)
+  }
 }

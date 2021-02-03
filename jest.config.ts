@@ -21,22 +21,3 @@ export default {
     "^.+\\.ts?$": "ts-jest",
   },
 }
-
-export default {
-  clearMocks: true,
-  coverageDirectory: "coverage",
-
-  moduleFileExtensions: ["js", "ts"],
-
-  restoreMocks: true,
-
-  roots: ["<rootDir>/src"],
-
-  testEnvironment: "jsdom",
-
-  testMatch: ["**/*.spec.(js|ts)"],
-
-  transform: {
-    '^.+\\.ts?$': 'ts-jest',
-  },
-}
