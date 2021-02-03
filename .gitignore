@@ -4,3 +4,6 @@ node_modules
 coverage
 .vscode
 .idea
+.
+/src/index.css.map
+/src/index.css
