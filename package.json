@@ -7,6 +7,7 @@
     "build": "webpack",
     "watch": "npm run build -- --watch",
     "start": "webpack serve --open",
+    "start:mobile": "webpack serve --open --host 0.0.0.0 --port 8080",
     "test": "jest --passWithNoTests",
     "test:cov": "jest --coverage --passWithNoTests",
     "format-check": "prettier --check \"src/**/*\"",

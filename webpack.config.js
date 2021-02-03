@@ -47,6 +47,7 @@ module.exports = {
   },
   devServer: {
     contentBase: "./src",
+    host: "0.0.0.0",
   },
   plugins: [
     new CleanWebpackPlugin(),

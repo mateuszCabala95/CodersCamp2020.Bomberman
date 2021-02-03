@@ -10,4 +10,10 @@ export default class MobileDetectionService {
       ? "landscape"
       : "portrait"
   }
+
+  logEvent(): void {
+    window.addEventListener("orientationchange", () =>
+      alert(screen.orientation.type)
+    )
+  }
 }
