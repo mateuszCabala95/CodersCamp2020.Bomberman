@@ -34,6 +34,12 @@ export class PlayerDrawComponent implements IComponent {
     const color = this.Entity.Team === Team.A ? colors.a : colors.b
 
     CanvasLayer.Foreground.FillCircle(this.Position)
+    CanvasLayer.Foreground2.FillBlock(
+      new Vector2D(
+        this.Position.x - Settings.grid.nodeSize,
+        this.Position.y - Settings.grid.nodeSize
+      )
+    )
   }
 
   private Clear(): void {

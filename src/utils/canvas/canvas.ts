@@ -4,6 +4,7 @@ let img = new Image()
 let block = new Image()
 
 img.src = "https://svgshare.com/i/Thc.svg"
+block.src = "https://svgshare.com/i/Tii.svg"
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
   private _ctx!: CanvasRenderingContext2D
@@ -44,6 +45,14 @@ export class Canvas implements IAwake {
   public FillCircle(center: Vector2D): void {
     this._ctx.beginPath()
     this._ctx.drawImage(img, center.x - 40, center.y - 40)
+    this._ctx.fill()
+  }
+
+  public FillBlock(center: Vector2D): void {
+    this._ctx.beginPath()
+    this._ctx.drawImage(block, 130, 240)
+    this._ctx.drawImage(block, 240, 460)
+    this._ctx.drawImage(block, 350, 680)
     this._ctx.fill()
   }
 
