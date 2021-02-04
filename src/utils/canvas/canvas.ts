@@ -1,5 +1,6 @@
 import { Vector2D, IAwake, Color } from "../../utils"
-var img = new Image()
+
+let img = new Image()
 img.src = "https://svgshare.com/i/Thc.svg"
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
