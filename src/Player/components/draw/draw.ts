@@ -33,11 +33,7 @@ export class PlayerDrawComponent implements IComponent {
     const colors = Settings.players.colors
     const color = this.Entity.Team === Team.A ? colors.a : colors.b
 
-    CanvasLayer.Foreground.FillCircle(
-      this.Position,
-      Settings.players.radius,
-      color
-    )
+    CanvasLayer.Foreground.FillCircle(this.Position)
   }
 
   private Clear(): void {
