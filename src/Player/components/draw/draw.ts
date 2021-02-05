@@ -5,7 +5,7 @@ import { Settings } from "../../../settings"
 import { Team } from "../../../team"
 
 export class PlayerDrawComponent implements IComponent {
-  public Entity!: Player
+  public Entity: Player
 
   constructor(entity: Player) {
     this.Entity = entity
