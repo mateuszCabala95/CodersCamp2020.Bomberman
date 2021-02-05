@@ -29,11 +29,23 @@ export class GameInputComponent implements IComponent {
       return
     }
 
-    const player = this.Entity.Entities.filter(
+    const playerEntities = this.Entity.Entities.filter(
       (x) => x instanceof Player
-    )[0] as Player
+    ) as Player[]
     const [x, y] = locomotionKeys.get(e.code)!
-    player.Move(x, y)
+
+    if (playerEntities[1]) {
+      const playerBKeys = ["KeyW", "KeyS", "KeyD", "KeyA"]
+
+      if (playerBKeys.includes(e.code)) {
+        playerEntities[1].Move(x, y)
+      } else {
+        playerEntities[0].Move(x, y)
+      }
+    } else {
+      playerEntities[0].Move(x, y)
+    }
+
     window.requestAnimationFrame(() => {
       this.Entity.Update()
     })
