@@ -6,7 +6,6 @@ import { GameInputComponent } from "./components"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
-
   private _entities: Entity[] = []
 
   public get Entities(): Entity[] {
@@ -14,13 +13,13 @@ export class Game extends Entity {
   }
 
   public Awake(): void {
-    this.AddComponent(new GameInputComponent())
+    this.AddComponent(new GameInputComponent(this))
     super.Awake()
     const grid = new Grid()
     this._entities.push(
       grid,
-      new Player(Team.A, grid.Nodes[0]),
-      new Player(Team.B, grid.Nodes[grid.Nodes.length - 1])
+      new Player(Team.A, grid, 0),
+      new Player(Team.B, grid, grid.Nodes.length - 1)
     )
 
     for (const entity of this.Entities) {
