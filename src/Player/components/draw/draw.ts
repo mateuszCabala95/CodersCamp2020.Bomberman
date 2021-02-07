@@ -30,7 +30,7 @@ export class PlayerDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.FillCircle(this.Position)
+    CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
     CanvasLayer.Foreground2
       .FillBlock
       // new Vector2D(
