@@ -23,7 +23,7 @@ export class PlayerLocomotionComponent implements IComponent {
     /* @todo */
   }
 
-  public Update(deltaTime: number): void {
+  public Update(): void {
     /* @todo */
   }
 }

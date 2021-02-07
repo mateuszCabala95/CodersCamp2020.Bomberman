@@ -2,7 +2,7 @@ import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Player } from "../../player"
 import { Settings } from "../../../settings"
-import { Team } from "../../../team"
+// import { Team } from "../../../team"
 
 export class PlayerDrawComponent implements IComponent {
   public Entity: Player
@@ -24,22 +24,20 @@ export class PlayerDrawComponent implements IComponent {
     this.Clear()
   }
 
-  public Update(deltaTime: number): void {
+  public Update(): void {
     this.Clear()
     this.Draw()
   }
 
   private Draw(): void {
-    const colors = Settings.players.colors
-    const color = this.Entity.Team === Team.A ? colors.a : colors.b
-
     CanvasLayer.Foreground.FillCircle(this.Position)
-    CanvasLayer.Foreground2.FillBlock(
-      new Vector2D(
-        this.Position.x - Settings.grid.nodeSize,
-        this.Position.y - Settings.grid.nodeSize
-      )
-    )
+    CanvasLayer.Foreground2
+      .FillBlock
+      // new Vector2D(
+      //   this.Position.x - Settings.grid.nodeSize,
+      //   this.Position.y - Settings.grid.nodeSize
+      // )
+      ()
   }
 
   private Clear(): void {

@@ -18,7 +18,7 @@ export class NodeDrawComponent implements IComponent {
     this.Clear()
   }
 
-  public Update(deltaTime: number): void {
+  public Update(): void {
     this.Clear()
     this.Draw()
     this.DrawRect()
