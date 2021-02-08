@@ -1,4 +1,4 @@
-import Joystick from "./joystick"
+import Joystick from "../joystick"
 
 const div = document.createElement('div')
 div.id = 'joyDiv'
