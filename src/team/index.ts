@@ -1,2 +1,2 @@
-export * from './team'
-export * from '../Player/components'
+export * from "./team"
+export * from "../Player/components"

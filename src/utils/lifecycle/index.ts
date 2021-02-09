@@ -1,1 +1,1 @@
-export * from './lifecycle.h'
+export * from "./lifecycle.h"
