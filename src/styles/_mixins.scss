@@ -1,0 +1,28 @@
+@mixin mobileScreen {
+  @media (min-width: #{map-get($m--layout-breakpoints, sm)}) {
+    @content;
+  }
+}
+
+@mixin tabletScreen {
+  @media (min-width: #{map-get($m--layout-breakpoints, md)}) {
+    @content;
+  }
+}
+
+@mixin notebookScreen {
+  @media (min-width: #{map-get($m--layout-breakpoints, lg)}) {
+    @content;
+  }
+}
+@mixin desktopScreen {
+  @media (min-width: #{map-get($m--layout-breakpoints, xxl)}) {
+    @content;
+  }
+}
+
+@mixin tvScreen {
+  @media (min-width: #{map-get($m--layout-breakpoints, xxxl)}) {
+    @content;
+  }
+}
