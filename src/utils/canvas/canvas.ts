@@ -43,7 +43,6 @@ export class Canvas implements IAwake {
   }
 
   public FillCircle(center: Vector2D): void {
-    console.log(center)
     this._ctx.beginPath()
     this._ctx.drawImage(img, center.x - 40, center.y - 40)
     this._ctx.fill()
