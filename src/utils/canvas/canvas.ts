@@ -1,3 +1,5 @@
+import { settings } from "cluster"
+import { Settings } from "src/settings"
 import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
 const img = new Image()
@@ -55,9 +57,16 @@ export class Canvas implements IAwake {
 
   public FillBlock(): void {
     this._ctx.beginPath()
-    this._ctx.drawImage(block, 130, 240)
-    this._ctx.drawImage(block, 240, 460)
-    this._ctx.drawImage(block, 350, 680)
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        if (i % 2 === 1 && j % 2 === 1) {
+          this._ctx.drawImage(block, i * 100, j * 100)
+        }
+        //this._ctx.drawImage(block, 130, 240)
+        // this._ctx.drawImage(block, 240, 460)
+        //   this._ctx.drawImage(block, 350, 680)
+      }
+    }
     this._ctx.fill()
   }
 
