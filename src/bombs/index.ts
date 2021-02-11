@@ -1,1 +1,1 @@
-export * from './bombs'
+export * from "./bombs"
