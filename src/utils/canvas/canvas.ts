@@ -4,9 +4,12 @@ import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
 const img = new Image()
 const block = new Image()
+const bot = new Image()
 
 img.src = "https://svgshare.com/i/Thc.svg"
 block.src = "https://svgshare.com/i/Tii.svg"
+//bot.src = TODO
+
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
   private _ctx!: CanvasRenderingContext2D
@@ -50,7 +53,7 @@ export class Canvas implements IAwake {
     if (team == 0) {
       this._ctx.drawImage(img, center.x - 40, center.y - 40)
     } else {
-      this._ctx.drawImage(block, center.x - 40, center.y - 40)
+      this._ctx.drawImage(img, center.x - 40, center.y - 40)
     }
     this._ctx.fill()
   }
