@@ -1,8 +1,6 @@
 import MainPage from "../pages/mainPage/MainPage"
 import { Game } from "../game"
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const mainPage = require("../pages/mainPage/main-page.html")
+import mainPage from "../pages/mainPage/main-page.html"
 
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
@@ -16,7 +14,7 @@ export default class Router {
   initPage = (): void => {
     const hash = window.location.hash.split("#")[1]
     switch (hash) {
-      case "main"  : {
+      case "main": {
         if (this.appContainer) {
           this.appContainer.innerHTML = mainPage
           new MainPage().render()
@@ -26,7 +24,7 @@ export default class Router {
 
       case "game": {
         if (this.appContainer) {
-          this.appContainer.innerHTML = ''
+          this.appContainer.innerHTML = ""
           new Game().Awake()
         }
         break
@@ -38,15 +36,16 @@ export default class Router {
         break
       }
       default: {
-        window.location.hash = "main"
+        window.location.href = "/#main"
         break
       }
     }
   }
 
   render = (): void => {
+    this.initPage()
     this.initVariable()
-    window.location.hash = '#'
+    window.location.hash = "#"
     window.addEventListener("hashchange", () => {
       this.initPage()
     })

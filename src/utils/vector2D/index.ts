@@ -1,1 +1,1 @@
-export * from './vector2D'
+export * from "./vector2D"

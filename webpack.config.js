@@ -7,13 +7,13 @@ var { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
   optimization: {
     splitChunks: {
-      chunks: () => false
+      chunks: () => false,
     },
-    runtimeChunk: false
+    runtimeChunk: false,
   },
   mode: "development",
   entry: {
-    index: "./src/index.ts"
+    index: "./src/index.ts",
   },
 
   module: {
@@ -21,54 +21,55 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: "ts-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.html$/,
-        loader: "html-loader"
+        loader: "html-loader",
       },
       {
         test: /\.scss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
           {
             loader: "sass-loader",
             options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }
-    ]
+              sourceMap: true,
+            },
+          },
+        ],
+      },
+    ],
   },
   devServer: {
-    contentBase: "./src"
+    contentBase: "./src",
+    historyApiFallback: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: "[id].css"
+      chunkFilename: "[id].css",
     }),
     new HtmlWebpackPlugin({
-      template: "index.html"
+      template: "index.html",
     }),
-    new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 15 * 1024 })
+    new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 15 * 1024 }),
   ],
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".scss"]
-  }
+    extensions: [".ts", ".tsx", ".js", ".scss"],
+  },
 }
