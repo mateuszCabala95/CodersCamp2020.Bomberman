@@ -2,7 +2,7 @@ import { Color } from "../utils"
 
 export const Settings = Object.freeze({
   grid: {
-    dimension: 8,
+    dimension: 9,
     nodeSize: 100,
     nodeOffset: 10,
     color: new Color(245, 245, 245, 1),

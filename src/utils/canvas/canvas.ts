@@ -60,8 +60,8 @@ export class Canvas implements IAwake {
 
   public FillBlock(): void {
     this._ctx.beginPath()
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
         if (i % 2 === 1 && j % 2 === 1) {
           this._ctx.drawImage(block, i * 110 + 20, j * 110 + 20)
         }
