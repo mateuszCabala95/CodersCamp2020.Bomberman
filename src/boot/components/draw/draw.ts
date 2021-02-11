@@ -30,7 +30,7 @@ export class BootDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.FillCircle(this.Position)
+    CanvasLayer.Foreground.DrawPlayer(this.Position, 1)
     CanvasLayer.Foreground2
       .FillBlock
       // new Vector2D(

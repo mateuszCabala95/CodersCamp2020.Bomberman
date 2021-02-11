@@ -60,7 +60,7 @@ export class Canvas implements IAwake {
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
         if (i % 2 === 1 && j % 2 === 1) {
-          this._ctx.drawImage(block, i * 100, j * 100)
+          this._ctx.drawImage(block, i * 110 + 20, j * 110 + 20)
         }
         //this._ctx.drawImage(block, 130, 240)
         // this._ctx.drawImage(block, 240, 460)
