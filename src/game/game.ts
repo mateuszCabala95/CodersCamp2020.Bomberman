@@ -24,7 +24,12 @@ export class Game extends Entity {
       new Boot(
         Team.B,
         grid,
-        grid.Nodes.length - Math.floor(Math.random() * 56) + 1
+        grid.Nodes.length - Math.floor(Math.random() * 63) + 1
+      ),
+      new Boot(
+        Team.B,
+        grid,
+        grid.Nodes.length - Math.floor(Math.random() * 63) + 1
       )
     )
 
