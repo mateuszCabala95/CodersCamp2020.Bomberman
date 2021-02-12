@@ -10,6 +10,7 @@ export const Settings = Object.freeze({
 
   bombs: {
     numberOfBombs: 1,
+    duration: 2500,
   },
 
   players: {
