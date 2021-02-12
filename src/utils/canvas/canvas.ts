@@ -66,6 +66,12 @@ export class Canvas implements IAwake {
     this._ctx.drawImage(bot, center.x - 40, center.y - 40)
     this._ctx.fill()
   }
+  public FillBomb(center: Vector2D, radius: number, color: Color): void {
+    this._ctx.beginPath()
+    this._ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
+    this._ctx.fillStyle = color.AsString()
+    this._ctx.fill()
+  }
 
   public FillBlock(): void {
     this._ctx.beginPath()
