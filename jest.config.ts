@@ -1,3 +1,8 @@
+module.exports = {
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+}
+
 export default {
   clearMocks: true,
   coverageDirectory: "coverage",
@@ -13,6 +18,6 @@ export default {
   testMatch: ["**/*.spec.(js|ts)"],
 
   transform: {
-    '^.+\\.ts?$': 'ts-jest',
+    "^.+\\.ts?$": "ts-jest",
   },
 }

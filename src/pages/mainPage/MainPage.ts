@@ -2,7 +2,6 @@ import "../mainPage/main-page.scss"
 import Typed from "typed.js"
 
 export default class MainPage {
-
   player1Nickname = ""
   player2Nickname = ""
   is2Players = false
@@ -10,7 +9,11 @@ export default class MainPage {
   player2Input: Nullable<HTMLInputElement> | undefined
   is2PlayersCheckbox: Nullable<HTMLInputElement> | undefined
   playersForm: Nullable<HTMLFormElement> | undefined
-  descriptions: string[] = ["- Brick walls -", "- Collect bonuses -", " - Explode your enemies -"]
+  descriptions: string[] = [
+    "- Brick walls -",
+    "- Collect bonuses -",
+    " - Explode your enemies -",
+  ]
   typedOptions = {
     strings: [...this.descriptions],
     typeSpeed: 40,
@@ -47,7 +50,6 @@ export default class MainPage {
       // @ts-ignore
       this.player2Nickname = e.target.value
     })
-
   }
 
   private checkIs2Players = (): void => {
@@ -56,6 +58,7 @@ export default class MainPage {
       // @ts-ignore
       this.is2Players = e.target.checked
       this.is2Players ? this.player2Input!.classList.add("player__name--show") : this.player2Input!.classList.remove("player__name--show")
+
     })
   }
 
@@ -77,5 +80,4 @@ export default class MainPage {
     this.initEventListeners()
     const typed = new Typed("#description", this.typedOptions)
   }
-
 }

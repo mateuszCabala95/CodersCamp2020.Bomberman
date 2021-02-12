@@ -14,6 +14,7 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.ts"
+
   },
 
   module: {
@@ -72,3 +73,4 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".scss"]
   }
 }
+

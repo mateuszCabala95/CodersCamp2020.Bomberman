@@ -1,12 +1,12 @@
 import { Entity } from "../utils"
 import { Grid } from "../grid"
 import { Player } from "../Player"
+import { Boot } from "../boot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
-
   private _entities: Entity[] = []
 
   public get Entities(): Entity[] {
@@ -14,13 +14,23 @@ export class Game extends Entity {
   }
 
   public Awake(): void {
-    this.AddComponent(new GameInputComponent())
+    this.AddComponent(new GameInputComponent(this))
     super.Awake()
     const grid = new Grid()
     this._entities.push(
       grid,
-      new Player(Team.A, grid.Nodes[0]),
-      new Player(Team.B, grid.Nodes[grid.Nodes.length - 1])
+      new Player(Team.A, grid, 0),
+      new Player(Team.B, grid, grid.Nodes.length - 1),
+      new Boot(
+        Team.B,
+        grid,
+        grid.Nodes.length - Math.floor(Math.random() * 63) + 1
+      ),
+      new Boot(
+        Team.B,
+        grid,
+        grid.Nodes.length - Math.floor(Math.random() * 63) + 1
+      )
     )
 
     for (const entity of this.Entities) {
