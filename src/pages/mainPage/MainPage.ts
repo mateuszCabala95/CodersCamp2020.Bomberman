@@ -1,5 +1,5 @@
 import "../mainPage/main-page.scss"
-// import Typed from "typed.js"
+import Typed from "typed.js"
 
 export default class MainPage {
   player1Nickname = ""
@@ -19,18 +19,14 @@ export default class MainPage {
     typeSpeed: 40,
     loop: true,
     smartBackspace: true,
-    backSpeed: 40,
+    backSpeed: 40
   }
 
   private initVariables = (): void => {
     this.player1Input = document.querySelector("#player1") as HTMLInputElement
     this.player2Input = document.querySelector("#player2") as HTMLInputElement
-    this.is2PlayersCheckbox = document.querySelector(
-      "#numberOfPlayers"
-    ) as HTMLInputElement
-    this.playersForm = document.querySelector(
-      ".player__form"
-    ) as HTMLFormElement
+    this.is2PlayersCheckbox = document.querySelector("#numberOfPlayers") as HTMLInputElement
+    this.playersForm = document.querySelector(".player__form") as HTMLFormElement
   }
 
   private initEventListeners = (): void => {
@@ -61,9 +57,8 @@ export default class MainPage {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       this.is2Players = e.target.checked
-      this.is2Players
-        ? this.player2Input!.classList.add("player__name--show")
-        : this.player2Input!.classList.remove("player__name--show")
+      this.is2Players ? this.player2Input!.classList.add("player__name--show") : this.player2Input!.classList.remove("player__name--show")
+
     })
   }
 
@@ -80,9 +75,9 @@ export default class MainPage {
     })
   }
 
-  render(): void {
+  render (): void{
     this.initVariables()
     this.initEventListeners()
-    // const typed = new Typed("#description", this.typedOptions)
+    const typed = new Typed("#description", this.typedOptions)
   }
 }
