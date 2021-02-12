@@ -30,14 +30,7 @@ export class BootDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.DrawPlayer(this.Position, 1)
-    CanvasLayer.Foreground2
-      .FillBlock
-      // new Vector2D(
-      //   this.Position.x - Settings.grid.nodeSize,
-      //   this.Position.y - Settings.grid.nodeSize
-      // )
-      ()
+    CanvasLayer.Foreground.DrawPlayerBot(this.Position, 1)
   }
 
   private Clear(): void {

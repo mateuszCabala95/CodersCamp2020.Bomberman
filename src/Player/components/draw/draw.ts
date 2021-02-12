@@ -31,13 +31,8 @@ export class PlayerDrawComponent implements IComponent {
 
   private Draw(): void {
     CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
-    CanvasLayer.Foreground2
-      .FillBlock
-      // new Vector2D(
-      //   this.Position.x - Settings.grid.nodeSize,
-      //   this.Position.y - Settings.grid.nodeSize
-      // )
-      ()
+    CanvasLayer.Foreground2.FillBlock()
+    CanvasLayer.Foreground2.FillGround()
   }
 
   private Clear(): void {

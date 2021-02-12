@@ -1,5 +1,5 @@
 import "../mainPage/main-page.scss"
-import Typed from "typed.js"
+// import Typed from "typed.js"
 
 export default class MainPage {
   player1Nickname = ""
@@ -83,6 +83,6 @@ export default class MainPage {
   render(): void {
     this.initVariables()
     this.initEventListeners()
-    const typed = new Typed("#description", this.typedOptions)
+    // const typed = new Typed("#description", this.typedOptions)
   }
 }
