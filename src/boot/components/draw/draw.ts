@@ -1,13 +1,13 @@
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
-import { Player } from "../../player"
+import { Boot } from "../../boot"
 import { Settings } from "../../../settings"
 // import { Team } from "../../../team"
 
-export class PlayerDrawComponent implements IComponent {
-  public Entity: Player
+export class BootDrawComponent implements IComponent {
+  public Entity: Boot
 
-  constructor(entity: Player) {
+  constructor(entity: Boot) {
     this.Entity = entity
   }
 
@@ -30,9 +30,7 @@ export class PlayerDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
-    CanvasLayer.Foreground2.FillBlock()
-    CanvasLayer.Foreground2.FillGround()
+    CanvasLayer.Foreground.DrawPlayerBot(this.Position, 1)
   }
 
   private Clear(): void {

@@ -56,7 +56,7 @@ describe("Canvas", () => {
       expect(spy).toBeCalledWith(start.x, start.y, size.x, size.y)
     })
 
-    it("should draw and fill the circle", () => {
+    it("should draw player 1", () => {
       const center = new Vector2D(0, 0)
       const radius = 1
 
@@ -64,7 +64,7 @@ describe("Canvas", () => {
       const arcSpy = jest.spyOn(canvas.Context, "arc")
       const fillSpy = jest.spyOn(canvas.Context, "fill")
 
-      canvas.FillCircle(center)
+      canvas.DrawPlayer(center, 0)
 
       expect(beginPathSpy).toBeCalled()
       expect(arcSpy).toBeCalledWith(center.x, center.y, radius, 0, Math.PI * 2)
