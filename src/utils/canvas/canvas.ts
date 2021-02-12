@@ -1,10 +1,19 @@
+import { settings } from "cluster"
+import { Settings } from "src/settings"
+import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
-
-const img = new Image()
+const player1 = new Image()
+const player2 = new Image()
 const block = new Image()
+const bot = new Image()
+const ground = new Image()
 
-img.src = "https://svgshare.com/i/Thc.svg"
+player1.src = "https://svgshare.com/i/Thc.svg"
+player2.src = "https://svgshare.com/i/Twu.svg"
 block.src = "https://svgshare.com/i/Tii.svg"
+ground.src = "https://svgshare.com/i/Tx8.svg"
+bot.src = "https://svgshare.com/i/TxT.svg"
+
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
   private _ctx!: CanvasRenderingContext2D
@@ -42,17 +51,43 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
-  public FillCircle(center: Vector2D): void {
+  public DrawPlayer(center: Vector2D, team: Team): void {
     this._ctx.beginPath()
-    this._ctx.drawImage(img, center.x - 40, center.y - 40)
+    if (team == 0) {
+      this._ctx.drawImage(player1, center.x - 40, center.y - 40)
+    } else {
+      this._ctx.drawImage(player2, center.x - 40, center.y - 40)
+    }
+    this._ctx.fill()
+  }
+
+  public DrawPlayerBot(center: Vector2D, team: Team): void {
+    this._ctx.beginPath()
+    this._ctx.drawImage(bot, center.x - 40, center.y - 40)
     this._ctx.fill()
   }
 
   public FillBlock(): void {
     this._ctx.beginPath()
-    this._ctx.drawImage(block, 130, 240)
-    this._ctx.drawImage(block, 240, 460)
-    this._ctx.drawImage(block, 350, 680)
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (i % 2 === 1 && j % 2 === 1) {
+          this._ctx.drawImage(block, i * 110 + 20, j * 110 + 20)
+        }
+      }
+    }
+    this._ctx.fill()
+  }
+
+  public FillGround(): void {
+    this._ctx.beginPath()
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (i % 2 === 0 && j % 2 === 1 && i > 0 && i < 8) {
+          this._ctx.drawImage(ground, i * 110 + 20, j * 110 + 20)
+        }
+      }
+    }
     this._ctx.fill()
   }
 
