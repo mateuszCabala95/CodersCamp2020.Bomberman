@@ -20,4 +20,7 @@ export const Settings = Object.freeze({
       b: new Color(255, 236, 179, 1),
     },
   },
+  movement: {
+    delay: 200,
+  },
 })
