@@ -26,6 +26,7 @@ export class GameInputComponent implements IComponent {
     ])
 
     const bombKeys: Set<string> = new Set(["Space"])
+    const bombKeys2: Set<string> = new Set(["KeyE"])
 
     const playerEntities = this.Entity.Entities.filter(
       (x) => x instanceof Player
@@ -47,6 +48,8 @@ export class GameInputComponent implements IComponent {
       }
     } else if (bombKeys.has(e.code)) {
       playerEntities[0].SetBomb()
+    } else if (bombKeys2.has(e.code)) {
+      playerEntities[1].SetBomb()
     } else {
       return
     }
