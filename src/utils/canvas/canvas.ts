@@ -71,6 +71,13 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
+  public DrawExplosion(center: Vector2D, radius: number, color: Color): void {
+    this._ctx.beginPath()
+    this._ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
+    this._ctx.fillStyle = color.AsString()
+    this._ctx.fill()
+  }
+
   public FillBlock(): void {
     this._ctx.beginPath()
     for (let i = 0; i < 9; i++) {
