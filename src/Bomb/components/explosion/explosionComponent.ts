@@ -69,10 +69,7 @@ export default class ExplosionComponent implements IComponent {
 
   private Clear(startPosition: Vector2D): void {
     CanvasLayer.Foreground2.ClearRect(
-      new Vector2D(
-        startPosition.x - Settings.grid.nodeSize / 2,
-        startPosition.y - Settings.grid.nodeSize / 2
-      ),
+      new Vector2D(startPosition.x, startPosition.y),
       new Vector2D(Settings.grid.nodeSize, Settings.grid.nodeSize)
     )
   }
