@@ -61,7 +61,7 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
-  public DrawPlayerBot(center: Vector2D, team: Team): void {
+  public DrawPlayerBot(center: Vector2D): void {
     this._ctx.beginPath()
     this._ctx.drawImage(bot, center.x - 40, center.y - 40)
     this._ctx.fill()
