@@ -4,9 +4,12 @@ import MobileDetectionService from "../MobileDetection"
 export default class PhoneOrientationService {
   mobile = provider.get<MobileDetectionService>("mobileDetection")
 
-  forceLandscape = (): void => {
-    this.mobile.isMobileDevice()
-      ? screen.orientation.lock("landscape-primary")
-      : screen.orientation.lock("any")
+  async forceLandscape(): Promise<void> {
+    window.addEventListener("click", () => {
+      if (document.documentElement) {
+        document.documentElement.requestFullscreen()
+        screen.orientation.lock("landscape-primary")
+      }
+    })
   }
 }
