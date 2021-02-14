@@ -30,7 +30,7 @@ export class BootDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.DrawPlayerBot(this.Position, 1)
+    CanvasLayer.Foreground.DrawPlayerBot(this.Position)
   }
 
   private Clear(): void {
