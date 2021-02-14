@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Bomb } from "../../bomb"
