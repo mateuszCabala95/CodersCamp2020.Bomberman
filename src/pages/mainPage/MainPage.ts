@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "../mainPage/main-page.scss"
 import Typed from "typed.js"
 
