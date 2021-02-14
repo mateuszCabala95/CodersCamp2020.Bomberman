@@ -31,7 +31,6 @@ export class Player extends Entity {
     this._currentNodeIdx = currentPos + x + y * dim
     const blockX = currX + x
     const blockY = currY + y
-
     if (
       blockY % 2 === 1 &&
       blockX > 0 &&
@@ -82,7 +81,6 @@ export class Player extends Entity {
     for (const entity of this.Entities) {
       entity.Awake()
     }
-    // this.PrepareBombs()
   }
 
   public Update(deltaTime: number): void {
@@ -90,27 +88,5 @@ export class Player extends Entity {
     for (const entity of this.Entities) {
       entity.Update(deltaTime)
     }
-
-    // this._bombs.map((bombs) => bombs.Update(deltaTime))
   }
-  //
-  // private PreparePlayer(): void {
-  //   const dimension = Settings.grid.dimension
-  //   const nodes = this._grid.Nodes
-  //
-  //   const node =
-  //     this.Team == Team.A ? nodes[dimension] : nodes[nodes.length - 1]
-  //   this._locomotionComponent.Node = node
-  //   this.Awake()
-  // }
-
-  // private PrepareBombs(): void {
-  //   const numberOfBombs = Settings.bombs.numberOfBombs
-  //
-  //   for (let i = 0; i < numberOfBombs; i++) {
-  //     const bomb = new Bomb(this, this._grid, this._currentNodeIdx)
-  //     this._bombs.push(bomb)
-  //     bomb.Awake()
-  //   }
-  // }
 }
