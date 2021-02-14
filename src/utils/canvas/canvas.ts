@@ -1,5 +1,3 @@
-import { settings } from "cluster"
-import { Settings } from "src/settings"
 import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
 const player1 = new Image()
@@ -67,6 +65,13 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
   public FillBomb(center: Vector2D, radius: number, color: Color): void {
+    this._ctx.beginPath()
+    this._ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
+    this._ctx.fillStyle = color.AsString()
+    this._ctx.fill()
+  }
+
+  public DrawExplosion(center: Vector2D, radius: number, color: Color): void {
     this._ctx.beginPath()
     this._ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
     this._ctx.fillStyle = color.AsString()

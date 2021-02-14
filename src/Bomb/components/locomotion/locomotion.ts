@@ -3,7 +3,11 @@ import { Bomb } from "../../bomb"
 import { Node } from "../../../node"
 
 export class BombLocomotionComponent implements IComponent {
-  public Entity!: Bomb
+  public Entity: Bomb
+
+  constructor(Entity: Bomb) {
+    this.Entity = Entity
+  }
 
   private _node: Node | null = null
 

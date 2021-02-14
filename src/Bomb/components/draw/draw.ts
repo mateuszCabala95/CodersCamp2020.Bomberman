@@ -13,19 +13,21 @@ export class BombDrawComponent implements IComponent {
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a ship that has no Position")
+      throw new Error("Attempt to draw a bomb that has no Position")
     }
 
     return position
   }
 
   public Awake(): void {
-    this.Clear()
+    return
   }
 
   public Update(deltaTime: number): void {
-    this.Clear()
-    this.Draw()
+    if (this.Entity.Node) {
+      this.Clear()
+      this.Draw()
+    }
   }
 
   private Draw(): void {
