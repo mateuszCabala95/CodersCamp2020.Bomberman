@@ -1,6 +1,7 @@
 import MainPage from "../pages/mainPage/MainPage"
 import { Game } from "../game"
 import mainPage from "../pages/mainPage/main-page.html"
+import gamePage from "../pages/gamePage/gamepage.html"
 
 export default class Router {
   appContainer: Nullable<HTMLDivElement | undefined>
@@ -24,7 +25,7 @@ export default class Router {
 
       case "game": {
         if (this.appContainer) {
-          this.appContainer.innerHTML = ""
+          this.appContainer.innerHTML = gamePage
           new Game().Awake()
         }
         break

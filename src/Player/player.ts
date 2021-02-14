@@ -23,8 +23,8 @@ export class Player extends Entity {
 
     // validate if player can move there (walls) - TODO
     this._currentNodeIdx = currentPos + x + y * dim
-    let blockX = currX + x
-    let blockY = currY + y
+    const blockX = currX + x
+    const blockY = currY + y
     // without ground
     // if (blockX % 2 === 1 && blockY % 2 === 1 && this._currentNodeIdx > dim && this._currentNodeIdx < (dim * dim - dim)) {
     // with ground

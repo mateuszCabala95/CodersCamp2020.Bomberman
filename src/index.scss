@@ -3,10 +3,56 @@
 }
 
 canvas {
-    margin: 0;
+    margin: 5px;
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate( -50%, -50%);
 }
+
+.app {
+    margin: 100px;
+    display: flex;
+    flex-direction: row;
+    
+  }
+  
+  .sidepanel {
+    background-color: #292929;
+    color: blue;
+    margin: 100px 80px;
+    font-family: Sarpanch, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 990px;
+    width: 380px;
+    border: 2px solid blue;
+    .player-name {
+      font-size: 400%;
+      color: green;
+    }
+  }
+  
+  .parameters {
+    border: 2px solid red;
+    margin: 10%;
+    text-align: left;
+  }
+  
+  #timer {
+    font-size: 16px;
+    color: crimson;
+  }
+  
+  #joystick {
+    border: 2px solid red;
+    margin: 10%;
+    height: 300px;
+  }
+  
+  
+  
+  
