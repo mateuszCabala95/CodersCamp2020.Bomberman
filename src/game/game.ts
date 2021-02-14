@@ -4,6 +4,7 @@ import { Player } from "../Player"
 import { Boot } from "../boot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
+import MainPage from "../../src/pages/mainPage/MainPage"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
@@ -41,6 +42,33 @@ export class Game extends Entity {
       this._lastTimestamp = Date.now()
       this.Update()
     })
+
+    this.countdown()
+    this.showPlayersNamesOnSidePanel()
+  }
+
+  countdown(): void {
+    let seconds = document.getElementById("countdown")?.textContent
+    const countdown = setInterval(() => {
+      if (seconds && parseInt(seconds)) {
+        seconds = (parseInt(seconds) - 1).toString()
+        document.getElementById("countdown")!.textContent = seconds
+      } else {
+        clearInterval(countdown)
+      }
+    }, 1000)
+  }
+
+  showPlayersNamesOnSidePanel(): void {
+    const player1name = document.getElementById("player1")
+    const player2name = document.getElementById("player2")
+
+    if (player1name) {
+      player1name.textContent = localStorage.getItem("Player1Name")
+    }
+    if (player2name) {
+      player2name.textContent = localStorage.getItem("Player2Name")
+    }
   }
 
   public Update(): void {
