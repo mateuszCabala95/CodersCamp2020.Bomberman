@@ -37,9 +37,11 @@ canvas {
   }
   
   .parameters {
-    border: 2px solid red;
-    margin: 10%;
+    margin: 5%;
     text-align: left;
+    .avatar {
+      text-align: center;
+    }
   }
   
   #timer {

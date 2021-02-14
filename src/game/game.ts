@@ -4,7 +4,6 @@ import { Player } from "../Player"
 import { Boot } from "../boot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
-import MainPage from "../../src/pages/mainPage/MainPage"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
