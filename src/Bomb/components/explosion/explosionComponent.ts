@@ -51,20 +51,20 @@ export default class ExplosionComponent implements IComponent {
   }
 
   private getNodesToExplode(nodeIdx: number): Node[] {
-    const res: Node[] = []
+    const res: Set<Node> = new Set()
     const boardDim = Settings.grid.dimension
     const x = nodeIdx % boardDim
     const y = Math.floor(nodeIdx / boardDim)
+
     for (let i = Math.max(x - 2, 0); i <= Math.min(x + 2, boardDim - 1); i++) {
-      for (
-        let j = Math.max(y - 2, 0);
-        j <= Math.min(y + 2, boardDim - 1);
-        j++
-      ) {
-        res.push(this._grid.Nodes[j * boardDim + i])
-      }
+      res.add(this._grid.Nodes[i + y * boardDim])
     }
-    return res
+
+    for (let i = Math.max(y - 2, 0); i <= Math.min(y + 2, boardDim - 1); i++) {
+      res.add(this._grid.Nodes[x + i * boardDim])
+    }
+
+    return Array.from(res)
   }
 
   private Clear(startPosition: Vector2D): void {
