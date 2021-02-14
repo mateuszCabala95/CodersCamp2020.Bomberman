@@ -2,6 +2,7 @@
 import { Game } from "../../game"
 import { IComponent } from "../../../utils"
 import { Player } from "../../../Player"
+import { Settings } from "../../../settings"
 
 export class GameInputComponent implements IComponent {
   public Entity: Game
@@ -26,25 +27,39 @@ export class GameInputComponent implements IComponent {
       ["KeyA", [-1, 0]],
     ])
 
-    if (!locomotionKeys.has(e.code)) {
-      return
-    }
+    const bombKeys: Set<string> = new Set(["Space"])
+    const bombKeys2: Set<string> = new Set(["KeyE"])
 
     const playerEntities = this.Entity.Entities.filter(
       (x) => x instanceof Player
     ) as Player[]
-    const [x, y] = locomotionKeys.get(e.code)!
 
-    if (playerEntities[1]) {
-      const playerBKeys = ["KeyW", "KeyS", "KeyD", "KeyA"]
+    if (locomotionKeys.has(e.code)) {
+      const [x, y] = locomotionKeys.get(e.code)!
 
-      if (playerBKeys.includes(e.code)) {
-        playerEntities[1].Move(x, y)
+      if (playerEntities[1]) {
+        const playerBKeys = ["KeyW", "KeyS", "KeyD", "KeyA"]
+
+        if (playerBKeys.includes(e.code)) {
+          setTimeout(
+            () => playerEntities[1].Move(x, y),
+            Settings.movement.delay
+          )
+        } else {
+          setTimeout(
+            () => playerEntities[0].Move(x, y),
+            Settings.movement.delay
+          )
+        }
       } else {
-        playerEntities[0].Move(x, y)
+        setTimeout(() => playerEntities[0].Move(x, y), Settings.movement.delay)
       }
+    } else if (bombKeys.has(e.code)) {
+      playerEntities[0].SetBomb()
+    } else if (bombKeys2.has(e.code)) {
+      playerEntities[1].SetBomb()
     } else {
-      playerEntities[0].Move(x, y)
+      return
     }
 
     window.requestAnimationFrame(() => {
