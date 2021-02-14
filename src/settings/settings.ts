@@ -10,6 +10,7 @@ export const Settings = Object.freeze({
 
   bombs: {
     numberOfBombs: 1,
+    duration: 2500,
   },
 
   players: {
@@ -18,5 +19,8 @@ export const Settings = Object.freeze({
       a: new Color(187, 222, 251, 1),
       b: new Color(255, 236, 179, 1),
     },
+  },
+  movement: {
+    delay: 200,
   },
 })

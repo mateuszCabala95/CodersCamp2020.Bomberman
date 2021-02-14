@@ -1,20 +1,21 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
-import { Player } from "../../player"
+import { Bomb } from "../../bomb"
 import { Settings } from "../../../settings"
-// import { Team } from "../../../team"
 
-export class PlayerDrawComponent implements IComponent {
-  public Entity: Player
+export class BombDrawComponent implements IComponent {
+  public Entity: Bomb
 
-  constructor(entity: Player) {
+  constructor(entity: Bomb) {
     this.Entity = entity
   }
 
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a player that has no Position")
+      throw new Error("Attempt to draw a ship that has no Position")
     }
 
     return position
@@ -24,19 +25,24 @@ export class PlayerDrawComponent implements IComponent {
     this.Clear()
   }
 
-  public Update(): void {
+  public Update(deltaTime: number): void {
     this.Clear()
     this.Draw()
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
-    CanvasLayer.Foreground2.FillBlock()
-    CanvasLayer.Foreground2.FillGround()
+    const colors = Settings.players.colors
+    const color = colors.a
+
+    CanvasLayer.BombLayer.FillBomb(
+      this.Position,
+      Settings.players.radius,
+      color
+    )
   }
 
-  public Clear(): void {
-    CanvasLayer.Foreground2.ClearRect(
+  private Clear(): void {
+    CanvasLayer.Foreground.ClearRect(
       new Vector2D(
         this.Position.x - Settings.grid.nodeSize / 2,
         this.Position.y - Settings.grid.nodeSize / 2
