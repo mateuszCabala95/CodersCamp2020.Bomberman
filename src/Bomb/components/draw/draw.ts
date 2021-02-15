@@ -24,15 +24,10 @@ export class BombDrawComponent implements IComponent {
   }
 
   public Update(): void {
-<<<<<<< HEAD
-    this.Clear()
-    this.Draw()
-=======
     if (this.Entity.Node) {
       this.Clear()
       this.Draw()
     }
->>>>>>> bde8f43020b029e5d012e88466aca8d2c7894424
   }
 
   private Draw(): void {
