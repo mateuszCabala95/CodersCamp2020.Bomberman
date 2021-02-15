@@ -30,9 +30,7 @@ export class Player extends Entity {
     this._currentNodeIdx = currentPos + x + y * dim
     const blockX = currX + x
     const blockY = currY + y
-    // without ground
-    // if (blockX % 2 === 1 && blockY % 2 === 1 && this._currentNodeIdx > dim && this._currentNodeIdx < (dim * dim - dim)) {
-    // with ground
+
     if (
       blockY % 2 === 1 &&
       blockX > 0 &&
