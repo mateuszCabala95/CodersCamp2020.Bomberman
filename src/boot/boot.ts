@@ -30,6 +30,17 @@ export class Boot extends Entity {
       if (currX === dim - 1 && move[rand].x === 1) return
 
       this._currentNodeIdx = currentPos + move[rand].x + move[rand].y * dim
+      const blockX = currX + move[rand].x
+      const blockY = currY + move[rand].y
+      if (
+        blockY % 2 === 1 &&
+        blockX > 0 &&
+        blockX < dim - 1 &&
+        this._currentNodeIdx > dim &&
+        this._currentNodeIdx < dim * dim - dim
+      ) {
+        this._currentNodeIdx = currentPos
+      }
       const nextNode = this._grid.Nodes[this._currentNodeIdx]
       this._locomotionComponent.Node = nextNode
     }, 1000)
