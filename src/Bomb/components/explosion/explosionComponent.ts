@@ -53,11 +53,15 @@ export default class ExplosionComponent implements IComponent {
     const y = Math.floor(nodeIdx / boardDim)
 
     for (let i = Math.max(x - 2, 0); i <= Math.min(x + 2, boardDim - 1); i++) {
-      res.add(this._grid.Nodes[i + y * boardDim])
+      if (!this._grid.Nodes[i + y * boardDim].Brick) {
+        res.add(this._grid.Nodes[i + y * boardDim])
+      }
     }
 
     for (let i = Math.max(y - 2, 0); i <= Math.min(y + 2, boardDim - 1); i++) {
-      res.add(this._grid.Nodes[x + i * boardDim])
+      if (x + ((i * boardDim) % 9) === 0 || x + ((i * boardDim) % 9) === 8) {
+        res.add(this._grid.Nodes[x + i * boardDim])
+      }
     }
 
     return Array.from(res)
