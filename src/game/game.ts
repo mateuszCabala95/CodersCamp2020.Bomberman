@@ -18,10 +18,11 @@ export class Game extends Entity {
     this.AddComponent(new GameInputComponent(this))
     super.Awake()
     const grid = new Grid()
+    this._entities.push(grid, new Player(Team.A, grid, 0))
+    if (localStorage.getItem("isTwoPlayers") === "true") {
+      this._entities.push(new Player(Team.B, grid, grid.Nodes.length - 1))
+    }
     this._entities.push(
-      grid,
-      new Player(Team.A, grid, 0),
-      new Player(Team.B, grid, grid.Nodes.length - 1),
       new Boot(
         Team.B,
         grid,
