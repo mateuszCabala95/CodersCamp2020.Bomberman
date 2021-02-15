@@ -34,6 +34,7 @@ export class GameInputComponent implements IComponent {
     ) as Player[]
 
     if (locomotionKeys.has(e.code)) {
+      /* eslint-disable @typescript-eslint/no-non-null-assertion */
       const [x, y] = locomotionKeys.get(e.code)!
 
       if (playerEntities[1]) {
