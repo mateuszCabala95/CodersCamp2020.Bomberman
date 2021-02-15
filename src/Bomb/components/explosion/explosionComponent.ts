@@ -35,11 +35,7 @@ export default class ExplosionComponent implements IComponent {
       const currentNodeIdx = this._grid.Nodes.indexOf(this.Entity.Node)
       const explosionNodes = this.getNodesToExplode(currentNodeIdx)
       explosionNodes.forEach((node) => {
-        CanvasLayer.Foreground2.DrawExplosion(
-          node.Center,
-          Settings.players.radius,
-          Settings.players.colors.b
-        )
+        CanvasLayer.Foreground2.DrawExplosion(node.Center)
       })
       setTimeout(() => {
         explosionNodes.forEach((node) => {

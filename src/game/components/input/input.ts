@@ -2,6 +2,7 @@ import { Game } from "../../game"
 import { IComponent } from "../../../utils"
 import { Player } from "../../../Player"
 
+import { Settings } from "../../../settings"
 export class GameInputComponent implements IComponent {
   public Entity: Game
 
@@ -39,12 +40,18 @@ export class GameInputComponent implements IComponent {
         const playerBKeys = ["KeyW", "KeyS", "KeyD", "KeyA"]
 
         if (playerBKeys.includes(e.code)) {
-          playerEntities[1].Move(x, y)
+          setTimeout(
+            () => playerEntities[1].Move(x, y),
+            Settings.movement.delay
+          )
         } else {
-          playerEntities[0].Move(x, y)
+          setTimeout(
+            () => playerEntities[0].Move(x, y),
+            Settings.movement.delay
+          )
         }
       } else {
-        playerEntities[0].Move(x, y)
+        setTimeout(() => playerEntities[0].Move(x, y), Settings.movement.delay)
       }
     } else if (bombKeys.has(e.code)) {
       playerEntities[0].SetBomb()

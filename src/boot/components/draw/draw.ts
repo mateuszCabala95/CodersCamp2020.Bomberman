@@ -2,7 +2,6 @@ import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Boot } from "../../boot"
 import { Settings } from "../../../settings"
-// import { Team } from "../../../team"
 
 export class BootDrawComponent implements IComponent {
   public Entity: Boot
@@ -30,7 +29,7 @@ export class BootDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    CanvasLayer.Foreground.DrawPlayerBot(this.Position, 1)
+    CanvasLayer.Foreground.DrawPlayerBot(this.Position)
   }
 
   private Clear(): void {

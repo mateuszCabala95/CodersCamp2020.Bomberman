@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import "../mainPage/main-page.scss"
-// import Typed from "typed.js"
+import Typed from "typed.js"
 
 export default class MainPage {
   player1Nickname = ""
@@ -57,14 +59,18 @@ export default class MainPage {
   }
 
   private checkIs2Players = (): void => {
-    this.is2PlayersCheckbox!.addEventListener("input", (e) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      this.is2Players = e.target.checked
-      this.is2Players
-        ? this.player2Input!.classList.add("player__name--show")
-        : this.player2Input!.classList.remove("player__name--show")
-    })
+    if (this.is2PlayersCheckbox) {
+      this.is2PlayersCheckbox.addEventListener("input", (e) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        this.is2Players = e.target.checked
+        if (this.player2Input) {
+          this.is2Players
+            ? this.player2Input.classList.add("player__name--show")
+            : this.player2Input.classList.remove("player__name--show")
+        }
+      })
+    }
   }
 
   private sendForm = (): void => {
@@ -83,6 +89,6 @@ export default class MainPage {
   render(): void {
     this.initVariables()
     this.initEventListeners()
-    // const typed = new Typed("#description", this.typedOptions)
+    const typed = new Typed("#description", this.typedOptions)
   }
 }

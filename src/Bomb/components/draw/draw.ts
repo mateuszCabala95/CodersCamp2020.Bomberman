@@ -23,7 +23,7 @@ export class BombDrawComponent implements IComponent {
     return
   }
 
-  public Update(deltaTime: number): void {
+  public Update(): void {
     if (this.Entity.Node) {
       this.Clear()
       this.Draw()
@@ -31,14 +31,7 @@ export class BombDrawComponent implements IComponent {
   }
 
   private Draw(): void {
-    const colors = Settings.players.colors
-    const color = colors.a
-
-    CanvasLayer.BombLayer.FillBomb(
-      this.Position,
-      Settings.players.radius,
-      color
-    )
+    CanvasLayer.BombLayer.DrawBomb(this.Position)
   }
 
   private Clear(): void {
