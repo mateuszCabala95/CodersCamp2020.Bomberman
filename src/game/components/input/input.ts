@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Game } from "../../game"
 import { IComponent } from "../../../utils"
 import { Player } from "../../../Player"
-import { Settings } from "../../../settings"
 
+import { Settings } from "../../../settings"
 export class GameInputComponent implements IComponent {
   public Entity: Game
 
@@ -35,6 +34,7 @@ export class GameInputComponent implements IComponent {
     ) as Player[]
 
     if (locomotionKeys.has(e.code)) {
+      /* eslint-disable @typescript-eslint/no-non-null-assertion */
       const [x, y] = locomotionKeys.get(e.code)!
 
       if (playerEntities[1]) {

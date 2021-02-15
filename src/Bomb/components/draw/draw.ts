@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Bomb } from "../../bomb"
@@ -15,30 +13,25 @@ export class BombDrawComponent implements IComponent {
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a ship that has no Position")
+      throw new Error("Attempt to draw a bomb that has no Position")
     }
 
     return position
   }
 
   public Awake(): void {
-    this.Clear()
+    return
   }
 
-  public Update(deltaTime: number): void {
-    this.Clear()
-    this.Draw()
+  public Update(): void {
+    if (this.Entity.Node) {
+      this.Clear()
+      this.Draw()
+    }
   }
 
   private Draw(): void {
-    const colors = Settings.players.colors
-    const color = colors.a
-
-    CanvasLayer.BombLayer.FillBomb(
-      this.Position,
-      Settings.players.radius,
-      color
-    )
+    CanvasLayer.BombLayer.DrawBomb(this.Position)
   }
 
   private Clear(): void {

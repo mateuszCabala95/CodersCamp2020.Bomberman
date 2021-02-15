@@ -1,19 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { settings } from "cluster"
-import { Settings } from "src/settings"
 import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
+
 const player1 = new Image()
 const player2 = new Image()
 const block = new Image()
 const bot = new Image()
 const ground = new Image()
+const bomb = new Image()
+const explosion = new Image()
 
 player1.src = "https://svgshare.com/i/Thc.svg"
 player2.src = "https://svgshare.com/i/Twu.svg"
 block.src = "https://svgshare.com/i/Tii.svg"
 ground.src = "https://svgshare.com/i/Tx8.svg"
 bot.src = "https://svgshare.com/i/TxT.svg"
+bomb.src = "https://svgshare.com/i/U3m.svg"
+explosion.src = "https://svgshare.com/i/U3U.svg"
 
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
@@ -59,7 +61,6 @@ export class Canvas implements IAwake {
     } else {
       this._ctx.drawImage(player2, center.x - 40, center.y - 40)
     }
-    this._ctx.fill()
   }
 
   public DrawPlayerBot(center: Vector2D): void {
@@ -67,10 +68,15 @@ export class Canvas implements IAwake {
     this._ctx.drawImage(bot, center.x - 40, center.y - 40)
     this._ctx.fill()
   }
-  public FillBomb(center: Vector2D, radius: number, color: Color): void {
+  public DrawBomb(center: Vector2D): void {
     this._ctx.beginPath()
-    this._ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
-    this._ctx.fillStyle = color.AsString()
+    this._ctx.drawImage(bomb, center.x - 40, center.y - 40)
+    this._ctx.fill()
+  }
+
+  public DrawExplosion(center: Vector2D): void {
+    this._ctx.beginPath()
+    this._ctx.drawImage(explosion, center.x - 40, center.y - 40)
     this._ctx.fill()
   }
 
