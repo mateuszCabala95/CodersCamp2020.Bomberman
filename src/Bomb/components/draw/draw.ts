@@ -13,30 +13,30 @@ export class BombDrawComponent implements IComponent {
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a ship that has no Position")
+      throw new Error("Attempt to draw a bomb that has no Position")
     }
 
     return position
   }
 
   public Awake(): void {
-    this.Clear()
+    return
   }
 
   public Update(): void {
+<<<<<<< HEAD
     this.Clear()
     this.Draw()
+=======
+    if (this.Entity.Node) {
+      this.Clear()
+      this.Draw()
+    }
+>>>>>>> bde8f43020b029e5d012e88466aca8d2c7894424
   }
 
   private Draw(): void {
-    const colors = Settings.players.colors
-    const color = colors.a
-
-    CanvasLayer.BombLayer.FillBomb(
-      this.Position,
-      Settings.players.radius,
-      color
-    )
+    CanvasLayer.BombLayer.DrawBomb(this.Position)
   }
 
   private Clear(): void {

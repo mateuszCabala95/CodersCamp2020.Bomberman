@@ -1,8 +1,7 @@
 import { Entity, Vector2D } from "../utils"
-import { Team } from "../team"
+import { PlayerDrawComponent, PlayerLocomotionComponent, Team } from "../team"
 import { Bomb } from "../Bomb"
 import { Settings } from "../settings"
-import { PlayerDrawComponent, PlayerLocomotionComponent } from "../team"
 import { Grid } from "../grid"
 
 export class Player extends Entity {
