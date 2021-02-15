@@ -2,7 +2,6 @@ import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Boot } from "../../boot"
 import { Settings } from "../../../settings"
-// import { Team } from "../../../team"
 
 export class BootDrawComponent implements IComponent {
   public Entity: Boot

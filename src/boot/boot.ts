@@ -29,7 +29,6 @@ export class Boot extends Entity {
       if (currX === 0 && move[rand].x === -1) return
       if (currX === dim - 1 && move[rand].x === 1) return
 
-      // validate if player can move there (walls) - TODO
       this._currentNodeIdx = currentPos + move[rand].x + move[rand].y * dim
       const nextNode = this._grid.Nodes[this._currentNodeIdx]
       this._locomotionComponent.Node = nextNode

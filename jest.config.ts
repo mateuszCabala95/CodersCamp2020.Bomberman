@@ -1,6 +1,8 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
+  modulePathIgnorePatterns: ["<rootDir>/src/node/__tests__/mocks"],
+  setupFiles: ["jest-canvas-mock"],
 }
 
 export default {
@@ -20,4 +22,6 @@ export default {
   transform: {
     "^.+\\.ts?$": "ts-jest",
   },
+
+  modulePathIgnorePatterns: ["**/*.mock.ts"],
 }

@@ -42,7 +42,6 @@ export class Player extends Entity {
     }
     const nextNode = this._grid.Nodes[this._currentNodeIdx]
     this._locomotionComponent.Node = nextNode
-    // this._playerDrawComponent
   }
 
   public SetBomb(): void {

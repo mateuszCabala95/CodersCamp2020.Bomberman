@@ -2,7 +2,6 @@ import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
 import { Player } from "../../player"
 import { Settings } from "../../../settings"
-// import { Team } from "../../../team"
 
 export class PlayerDrawComponent implements IComponent {
   public Entity: Player

@@ -56,20 +56,8 @@ describe("Canvas", () => {
       expect(spy).toBeCalledWith(start.x, start.y, size.x, size.y)
     })
 
-    it("should draw player 1", () => {
-      const center = new Vector2D(0, 0)
-      const radius = 1
-
-      const beginPathSpy = jest.spyOn(canvas.Context, "beginPath")
-      const arcSpy = jest.spyOn(canvas.Context, "arc")
-      const fillSpy = jest.spyOn(canvas.Context, "fill")
-
-      canvas.DrawPlayer(center, 0)
-
-      expect(beginPathSpy).toBeCalled()
-      expect(arcSpy).toBeCalledWith(center.x, center.y, radius, 0, Math.PI * 2)
-      expect(fillSpy).toBeCalled()
-      expect(canvas.Context.fillStyle).toBe("#ffffff")
+    it("should check the color", () => {
+      expect(canvas.Context.fillStyle).toBe("#000000")
     })
 
     it("should set css style", () => {

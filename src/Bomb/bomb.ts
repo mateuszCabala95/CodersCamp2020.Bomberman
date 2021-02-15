@@ -10,14 +10,6 @@ export class Bomb extends Entity {
   private readonly _grid: Grid
   private _currentNodeIdx: number
 
-  // constructor(public readonly Factory: Player) {
-  //   super()
-  // }
-
-  // public putOnGrid() {
-  //   const currentPos = this._currentNodeIdx
-  // }
-
   public get Position(): Vector2D | null {
     return this._locomotionComponent.Position
   }
@@ -43,7 +35,6 @@ export class Bomb extends Entity {
     setTimeout(() => this.onBombExplosion(), Settings.bombs.duration)
 
     super.Awake()
-    // this.PrepareBombs()
   }
 
   public Update(deltaTime: number): void {

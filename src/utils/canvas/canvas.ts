@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { settings } from "cluster"
-import { Settings } from "src/settings"
 import { Team } from "src/team"
 import { Vector2D, IAwake, Color } from "../../utils"
 const player1 = new Image()
