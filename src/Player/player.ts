@@ -10,7 +10,7 @@ export class Player extends Entity {
   private readonly _grid: Grid
   private _currentNodeIdx: number
   private _entities: Entity[] = []
-  private _bomb: Bomb | undefined = undefined
+  private _bomb: Bomb
   private _playerDrawComponent: PlayerDrawComponent
 
   public get Entities(): Entity[] {
@@ -45,16 +45,8 @@ export class Player extends Entity {
   }
 
   public SetBomb(): void {
-    if (!this._bomb) {
-      const bomb = new Bomb(this, this._grid, this._currentNodeIdx, () => {
-        this._entities = this._entities.filter((value) => {
-          return value !== bomb
-        })
-        this._bomb = undefined
-      })
-      this._bomb = bomb
-      this._entities.push(bomb)
-      bomb.Awake()
+    if (!this._bomb.Node) {
+      this._bomb.Node = this._locomotionComponent.Node
     }
   }
 
@@ -70,6 +62,8 @@ export class Player extends Entity {
     this._locomotionComponent.Node = grid.Nodes[startNodeIdx]
     this._currentNodeIdx = startNodeIdx
     this._playerDrawComponent = new PlayerDrawComponent(this)
+    this._bomb = new Bomb(this, grid)
+    this._entities.push(this._bomb)
   }
 
   public Awake(): void {

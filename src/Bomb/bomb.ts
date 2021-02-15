@@ -2,37 +2,37 @@ import { Entity, Vector2D } from "../utils"
 import { Player } from "../Player"
 import { BombLocomotionComponent } from "./components/locomotion"
 import { BombDrawComponent } from "./components"
+import ExplosionComponent from "./components/explosion/explosionComponent"
+import { Node } from "../node"
 import { Grid } from "../grid"
-import { Settings } from "../settings"
 
 export class Bomb extends Entity {
   private readonly _locomotionComponent: BombLocomotionComponent
-  private readonly _grid: Grid
-  private _currentNodeIdx: number
+  private _bombExplosionComponent: ExplosionComponent
 
   public get Position(): Vector2D | null {
     return this._locomotionComponent.Position
   }
 
-  constructor(
-    public readonly Player: Player,
-    grid: Grid,
-    startNodeIdx: number,
-    private readonly onBombExplosion: () => void
-  ) {
+  public get Node(): Node | null {
+    return this._locomotionComponent.Node
+  }
+
+  public set Node(node: Node | null) {
+    this._locomotionComponent.Node = node
+  }
+
+  constructor(private readonly Player: Player, grid: Grid) {
     super()
 
-    this._locomotionComponent = new BombLocomotionComponent()
-    this._grid = grid
-    this._locomotionComponent.Node = grid.Nodes[startNodeIdx]
-    this._currentNodeIdx = startNodeIdx
+    this._locomotionComponent = new BombLocomotionComponent(this)
+    this._bombExplosionComponent = new ExplosionComponent(this, grid)
   }
 
   public Awake(): void {
     this.AddComponent(this._locomotionComponent)
     this.AddComponent(new BombDrawComponent(this))
-
-    setTimeout(() => this.onBombExplosion(), Settings.bombs.duration)
+    this.AddComponent(this._bombExplosionComponent)
 
     super.Awake()
   }
