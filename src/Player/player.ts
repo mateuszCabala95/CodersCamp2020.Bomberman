@@ -39,8 +39,8 @@ export class Player extends Entity {
     ) {
       this._currentNodeIdx = currentPos
     }
-    this._locomotionComponent.Node = this._grid.Nodes[this._currentNodeIdx]
-    // this._playerDrawComponent
+    const nextNode = this._grid.Nodes[this._currentNodeIdx]
+    this._locomotionComponent.Node = nextNode
   }
 
   public SetBomb(): void {

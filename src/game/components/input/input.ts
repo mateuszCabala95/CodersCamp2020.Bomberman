@@ -68,6 +68,6 @@ export class GameInputComponent implements IComponent {
   }
 
   public Update(): void {
-    // @todo
+    /* @todo */
   }
 }

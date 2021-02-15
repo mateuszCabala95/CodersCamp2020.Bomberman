@@ -1,6 +1,6 @@
 import { Vector2D } from "../../utils"
 import { NodeDrawComponent } from "../components"
-import { mockNodeFactory } from "./node.mock"
+import { mockNodeFactory } from "./mocks/node.mock"
 import { Node } from "../node"
 
 describe(">>> Node", () => {
