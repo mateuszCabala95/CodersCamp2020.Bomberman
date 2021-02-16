@@ -1,0 +1,62 @@
+.gp-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+    .gp-col{
+        &.player1{
+            float: left
+        }
+        &.player1{
+            float: right
+        }
+
+        &.game{
+            display: flex;
+            flex-direction: column;
+            //position: relative;
+            padding: 10px;
+            #gameboard {
+                padding: 100px
+            }
+        }
+    }
+}
+
+
+.sidepanel {
+    background-color: #292929;
+    color: white;
+    margin: 100px 80px;
+    font-family: Sarpanch, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    width: 380px;
+    border: 2px solid white;
+  
+    .player-name {
+      font-size: 400%;
+      color: blue;
+    }
+  }
+  
+  .parameters {
+    margin: 5%;
+    text-align: left;
+  
+    .avatar {
+      text-align: center;
+    }
+    .parameter {
+      font-size:large;
+      padding: 10%;
+    }
+  }
+  
+  #timer {
+    justify-self: center;
+    font-size: 200%;
+    font-family: Sarpanch, sans-serif;
+    color: crimson;
+  }

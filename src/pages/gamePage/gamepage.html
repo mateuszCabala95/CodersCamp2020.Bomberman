@@ -1,54 +1,62 @@
 <body>
-  <div class="sidepanel" id="player1-box">
-    <div id="timer">
-      <h1>TIME: <span id="countdown">10</span></h1>
-    </div>
-    <br />
-    <div class="player-name" id="player1"></div>
-    <div class="parameters">
-      <div class="avatar">
-        <img
-          src="https://svgshare.com/i/Thc.svg"
-          alt="Player 1"
-          width="50"
-          height="50"
-        />
-      </div>
+  <main class="gp-container">
+    <section class="gp-col player1">
+      <div class="sidepanel" id="player1-box">
+        <br />
+        <div class="player-name" id="player1"></div>
+        <div class="parameters">
+          <div class="avatar">
+            <img
+              src="https://svgshare.com/i/Thc.svg"
+              alt="Player 1"
+              width="50"
+              height="50"
+            />
+          </div>
 
-      <div class="parameter" id="lives-left">
-        <h1>LIVES:</h1>
-      </div>
-      <div class="parameter" id="bombs">
-        <h1>BOMBS:</h1>
-      </div>
-      <div class="parameter" id="bomb-range">
-        <h1>BOMB RANGE:</h1>
-      </div>
-    </div>
-  </div>
-  <div class="sidepanel" id="player2-box">
-    <div id="player2-box">
-      <div class="player-name" id="player2"></div>
-      <div class="parameters">
-        <div class="avatar">
-          <img
-            src="https://svgshare.com/i/Twu.svg"
-            alt="Player 1"
-            width="50"
-            height="50"
-          />
+          <div class="parameter" id="lives-left">
+            <h1>LIVES: 3</h1>
+          </div>
+          <div class="parameter" id="bombs">
+            <h1>BOMBS: 1</h1>
+          </div>
+          <div class="parameter" id="bomb-range">
+            <h1>BOMB RANGE: 3</h1>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="parameter" id="lives-left">
-          <h1>LIVES:</h1>
-        </div>
-        <div class="parameter" id="bombs">
-          <h1>BOMBS:</h1>
-        </div>
-        <div class="parameter" id="bomb-range">
-          <h1>BOMB RANGE:</h1>
+    <section class="gp-col game">
+      <div id="timer">
+        <h1>TIME: <span id="countdown">180</span></h1>
+      </div>
+      <div id="gameboard"></div>
+    </section>
+
+    <section class="gp-col player2">
+      <div class="sidepanel" id="player2-box">
+        <div class="player-name" id="player2"></div>
+        <div class="parameters">
+          <div class="avatar">
+            <img
+              src="https://svgshare.com/i/Twu.svg"
+              alt="Player 1"
+              width="50"
+              height="50"
+            />
+          </div>
+          <div class="parameter" id="lives-left">
+            <h1>LIVES: 3</h1>
+          </div>
+          <div class="parameter" id="bombs">
+            <h1>BOMBS: 1</h1>
+          </div>
+          <div class="parameter" id="bomb-range">
+            <h1>BOMB RANGE: 3</h1>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
