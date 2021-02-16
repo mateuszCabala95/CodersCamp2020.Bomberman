@@ -47,7 +47,7 @@ export class Node extends Entity {
     public readonly Start: Vector2D,
     public readonly End: Vector2D,
     public readonly Index: Vector2D,
-    public Brick: boolean
+    buildState: BuildState
   ) {
     super()
     this._buildState = buildState
