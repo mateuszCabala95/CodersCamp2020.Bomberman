@@ -5,10 +5,12 @@ import { Player } from "../Player"
 import { Bot } from "../bot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
+import Endgame from "../utils/game-end/endgame"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
   private _entities: Entity[] = []
+  private _endGame = new Endgame(this)
 
   public get Entities(): Entity[] {
     return this._entities
@@ -84,6 +86,8 @@ export class Game extends Entity {
   }
 
   public Update(): void {
+    this._endGame.Update()
+
     const deltaTime = (Date.now() - this._lastTimestamp) / 1000
     super.Update(deltaTime)
 
@@ -91,7 +95,9 @@ export class Game extends Entity {
       entity.Update(deltaTime)
     }
 
-    this._lastTimestamp = Date.now()
-    window.requestAnimationFrame(() => this.Update())
+    if (!this._endGame.EndOfGame) {
+      this._lastTimestamp = Date.now()
+      window.requestAnimationFrame(() => this.Update())
+    }
   }
 }
