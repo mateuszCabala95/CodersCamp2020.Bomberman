@@ -32,8 +32,6 @@ export class PlayerDrawComponent implements IComponent {
 
   private Draw(): void {
     CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
-    // CanvasLayer.Foreground2.DrawBlocks()
-    // CanvasLayer.Foreground2.DrawGrounds()
   }
 
   public Clear(): void {
