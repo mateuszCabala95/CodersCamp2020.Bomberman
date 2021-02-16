@@ -56,7 +56,13 @@ export class Game extends Entity {
       } else {
         clearInterval(countdown)
       }
+      if (seconds == "0") {
+        document.body.innerHTML = ""
+      }
     }, 1000)
+    if (seconds == "0") {
+      document.body.innerHTML = ""
+    }
   }
 
   showPlayersNamesOnSidePanel(): void {
