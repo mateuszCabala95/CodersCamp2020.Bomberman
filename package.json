@@ -12,8 +12,8 @@
     "test:cov": "jest --coverage --passWithNoTests",
     "format-check": "prettier --check \"src/**/*\"",
     "prettify": "prettier --loglevel warn --write \"src/**/*\"",
-    "lint": "eslint \"src/**/*.{js,json,jsx,ts,tsx,html}\"",
-    "lint:fix": "eslint \"src/**/*.{js,json,css,jsx,ts,tsx,html}\" --fix"
+    "lint": "eslint \"src/**/*.{js,json,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,json,css,jsx,ts,tsx}\" --fix"
   },
   "husky": {
     "hooks": {

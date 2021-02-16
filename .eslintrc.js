@@ -4,14 +4,14 @@ module.exports = {
     commonjs: true,
     es2021: true,
     jest: true,
-    node: true
+    node: true,
   },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-     ],
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
@@ -20,10 +20,7 @@ module.exports = {
       arrowFunctions: true,
     },
   },
-  plugins: [
-    '@typescript-eslint',
-    "prettier"
-  ],
+  plugins: ["@typescript-eslint", "prettier"],
   rules: {
     "no-extra-semi": "error",
     "no-console": "warn",

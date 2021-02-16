@@ -15,7 +15,7 @@ block.src = "https://svgshare.com/i/Tii.svg"
 ground.src = "https://svgshare.com/i/Tx8.svg"
 bot.src = "https://svgshare.com/i/TxT.svg"
 bomb.src = "https://svgshare.com/i/U3m.svg"
-explosion.src = "https://svgshare.com/i/U3S.svg"
+explosion.src = "https://svgshare.com/i/U3U.svg"
 
 export class Canvas implements IAwake {
   private _elm!: HTMLCanvasElement
@@ -64,7 +64,6 @@ export class Canvas implements IAwake {
     } else {
       this._ctx.drawImage(player2, center.x - 40, center.y - 40)
     }
-    this._ctx.fill()
   }
 
   public DrawPlayerBot(center: Vector2D): void {

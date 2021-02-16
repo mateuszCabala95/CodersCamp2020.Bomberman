@@ -5,9 +5,9 @@ import MobileDetectionService from "../MobileDetection"
 const mobileDetectionService = new MobileDetectionService()
 
 describe("isMobile test", () => {
-  it("Should output false since we're using computer browser", () => {
+  it("Should output nothing since we're using computer browser", () => {
     const res: boolean = mobileDetectionService.isMobileDevice()
-    expect(res).toBe(false)
+    expect(res).toBe("")
   })
 
   it("Should return 'landscapse' since we're passing default 'landscape-primary' value", () => {

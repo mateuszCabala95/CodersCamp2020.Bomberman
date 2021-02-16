@@ -14,12 +14,12 @@ describe(">>> CanvasLayer", () => {
   })
 
   it("should create Foreground canvas only once", () => {
-    expect(Canvas).not.toBeCalled()
+    expect(Canvas).toBeCalled()
 
     const canvas1 = CanvasLayer.Foreground
     const canvas2 = CanvasLayer.Foreground
 
     expect(canvas1).toBe(canvas2)
-    expect(Canvas).toBeCalledTimes(1)
+    expect(Canvas).toBeCalledTimes(2)
   })
 })

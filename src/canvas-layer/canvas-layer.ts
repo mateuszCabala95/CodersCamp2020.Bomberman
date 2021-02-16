@@ -7,10 +7,6 @@ export class CanvasLayer {
   private static _foreground: Canvas
   private static _foreground2: Canvas
 
-  private constructor() {
-    /* make it unaccessible */
-  }
-
   private static InitCanvas(style: Partial<CSSStyleDeclaration>): Canvas {
     const size =
       (Settings.grid.nodeSize + Settings.grid.nodeOffset) *
