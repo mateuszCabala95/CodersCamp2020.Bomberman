@@ -4,7 +4,6 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Content](#content)
 * [How to Play](#how-to-play)
 
 ## General info
@@ -21,7 +20,22 @@ $ npm install
 $ npm start
 ```
 
-## Content
-
-
 ## How to Play
+### First we need to choose number of players
+
+![one player]("./.github/images/player1.png")
+
+![two players]("./.github/images/player2.png")
+
+### Player1
+* Arrows - Player movement
+* Space - Bomb
+
+### Player2
+* W/A/S/D - Player movement
+* E - Bomb
+
+
+
+
+
