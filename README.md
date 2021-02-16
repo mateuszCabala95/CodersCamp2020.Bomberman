@@ -5,6 +5,7 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [How to Play](#how-to-play)
+* [Link to Game](#link-to-game)
 
 ## General info
 Bomberman is a strategic, maze-based video game franchise originally developed by Hudson Soft and currently owned by Konami. The first game in the series was released in Japan on December 20, 1985 (1987 in the US) and new games have been published at irregular intervals ever since.
@@ -13,7 +14,7 @@ Bomberman is a strategic, maze-based video game franchise originally developed b
 For this project we used TypeScript, SCSS and HTML. 
 
 ## Setup
-To run this project, install it locally using npm:
+To run this project clone this project with `git clone` and install it locally using npm:
 
 ```
 $ npm install
@@ -35,6 +36,17 @@ One or Two Players
 ### Player2
 * W/A/S/D - Player movement
 * E - Bomb
+
+### Bots
+In gameplay we have two bots whose walking on the map
+
+### During gameplay we can put bombs
+![bomb](./.github/images/bomb.png)
+
+If you want win you need to kill all bots and the other player
+
+## Link to Game
+[Bomberman](https://mateuszcabala95.github.io/CodersCamp2020.Bomberman/)
 
 
 
