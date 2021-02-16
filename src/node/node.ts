@@ -1,7 +1,13 @@
 import { Entity, Vector2D } from "../utils"
-import { NodeDrawComponent } from "./components"
+import { BuildState, NodeDrawComponent } from "./components"
+import { Player } from "../Player"
+import { Bot } from "../bot"
 
 export class Node extends Entity {
+  private _buildState: BuildState
+  private _player: Player | undefined = undefined
+  private _bot: Bot | undefined = undefined
+
   public get Size(): Vector2D {
     return new Vector2D(this.End.x - this.Start.x, this.End.y - this.Start.y)
   }
@@ -13,12 +19,38 @@ export class Node extends Entity {
     )
   }
 
+  get Bot(): Bot | undefined {
+    return this._bot
+  }
+
+  set Bot(value: Bot | undefined) {
+    this._bot = value
+  }
+
+  get Player(): Player | undefined {
+    return this._player
+  }
+
+  set Player(value: Player | undefined) {
+    this._player = value
+  }
+
+  public get BuildState(): BuildState {
+    return this._buildState
+  }
+
+  public set BuildState(value: BuildState) {
+    this._buildState = value
+  }
+
   constructor(
     public readonly Start: Vector2D,
     public readonly End: Vector2D,
-    public readonly Index: Vector2D
+    public readonly Index: Vector2D,
+    buildState: BuildState
   ) {
     super()
+    this._buildState = buildState
   }
 
   public Awake(): void {

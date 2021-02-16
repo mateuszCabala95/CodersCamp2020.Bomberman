@@ -25,13 +25,13 @@ export class PlayerDrawComponent implements IComponent {
 
   public Update(): void {
     this.Clear()
-    this.Draw()
+    if (this.Entity.IsAlive) {
+      this.Draw()
+    }
   }
 
   private Draw(): void {
     CanvasLayer.Foreground.DrawPlayer(this.Position, this.Entity.Team)
-    CanvasLayer.Foreground2.FillBlock()
-    CanvasLayer.Foreground2.FillGround()
   }
 
   public Clear(): void {

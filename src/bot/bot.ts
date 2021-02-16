@@ -1,14 +1,23 @@
 import { Entity, Vector2D } from "../utils"
 import { Team } from "../team"
 import { Settings } from "../settings"
-import { BootDrawComponent } from "./components/index"
-import { BootLocomotionComponent } from "./components/index"
+import { BotDrawComponent, BotLocomotionComponent } from "./components"
 import { Grid } from "../grid"
+import { BuildState } from "../node"
 
-export class Boot extends Entity {
-  private readonly _locomotionComponent: BootLocomotionComponent
+export class Bot extends Entity {
+  private readonly _locomotionComponent: BotLocomotionComponent
   private readonly _grid: Grid
   private _currentNodeIdx: number
+  private _isAlive = true
+
+  get IsAlive(): boolean {
+    return this._isAlive
+  }
+
+  set IsAlive(value: boolean) {
+    this._isAlive = value
+  }
 
   public Move(): void {
     setInterval(() => {
@@ -20,6 +29,9 @@ export class Boot extends Entity {
       ]
       const rand = Math.floor(Math.random() * 4)
       const currentPos = this._currentNodeIdx
+      const currentNode = this._grid.Nodes[this._currentNodeIdx]
+      currentNode.BuildState = BuildState.none
+      currentNode.Bot = undefined
       const dim = Settings.grid.dimension
       const currX = currentPos % dim
       const currY = Math.floor(currentPos / dim)
@@ -30,7 +42,15 @@ export class Boot extends Entity {
       if (currX === dim - 1 && move[rand].x === 1) return
 
       this._currentNodeIdx = currentPos + move[rand].x + move[rand].y * dim
+      if (
+        this._grid.Nodes[this._currentNodeIdx].BuildState !== BuildState.none
+      ) {
+        this._currentNodeIdx = currentPos
+      }
       const nextNode = this._grid.Nodes[this._currentNodeIdx]
+      nextNode.BuildState = BuildState.player
+      nextNode.Bot = this
+
       this._locomotionComponent.Node = nextNode
     }, 1000)
   }
@@ -42,7 +62,7 @@ export class Boot extends Entity {
   constructor(public readonly Team: Team, grid: Grid, startNodeIdx: number) {
     super()
 
-    this._locomotionComponent = new BootLocomotionComponent()
+    this._locomotionComponent = new BotLocomotionComponent()
     this._grid = grid
     this._locomotionComponent.Node = grid.Nodes[startNodeIdx]
     this._currentNodeIdx = startNodeIdx
@@ -50,7 +70,7 @@ export class Boot extends Entity {
 
   public Awake(): void {
     this.AddComponent(this._locomotionComponent)
-    this.AddComponent(new BootDrawComponent(this))
+    this.AddComponent(new BotDrawComponent(this))
 
     super.Awake()
     this.Move()

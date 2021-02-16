@@ -2,13 +2,15 @@
 import { Entity } from "../utils"
 import { Grid } from "../grid"
 import { Player } from "../Player"
-import { Boot } from "../boot"
+import { Bot } from "../bot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
+import Endgame from "../utils/game-end/endgame"
 
 export class Game extends Entity {
   private _lastTimestamp = 0
   private _entities: Entity[] = []
+  private _endGame = new Endgame(this)
 
   public get Entities(): Entity[] {
     return this._entities
@@ -18,16 +20,17 @@ export class Game extends Entity {
     this.AddComponent(new GameInputComponent(this))
     super.Awake()
     const grid = new Grid()
+    this._entities.push(grid, new Player(Team.A, grid, 0))
+    if (localStorage.getItem("isTwoPlayers") === "true") {
+      this._entities.push(new Player(Team.B, grid, grid.Nodes.length - 1))
+    }
     this._entities.push(
-      grid,
-      new Player(Team.A, grid, 0),
-      new Player(Team.B, grid, grid.Nodes.length - 1),
-      new Boot(
+      new Bot(
         Team.B,
         grid,
         grid.Nodes.length - Math.floor(Math.random() * 63) + 1
       ),
-      new Boot(
+      new Bot(
         Team.B,
         grid,
         grid.Nodes.length - Math.floor(Math.random() * 63) + 1
@@ -83,6 +86,8 @@ export class Game extends Entity {
   }
 
   public Update(): void {
+    this._endGame.Update()
+
     const deltaTime = (Date.now() - this._lastTimestamp) / 1000
     super.Update(deltaTime)
 
@@ -90,7 +95,9 @@ export class Game extends Entity {
       entity.Update(deltaTime)
     }
 
-    this._lastTimestamp = Date.now()
-    window.requestAnimationFrame(() => this.Update())
+    if (!this._endGame.EndOfGame) {
+      this._lastTimestamp = Date.now()
+      window.requestAnimationFrame(() => this.Update())
+    }
   }
 }

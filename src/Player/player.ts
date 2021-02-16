@@ -3,6 +3,7 @@ import { PlayerDrawComponent, PlayerLocomotionComponent, Team } from "../team"
 import { Bomb } from "../Bomb"
 import { Settings } from "../settings"
 import { Grid } from "../grid"
+import { BuildState } from "../node"
 
 export class Player extends Entity {
   private readonly _locomotionComponent: PlayerLocomotionComponent
@@ -11,13 +12,25 @@ export class Player extends Entity {
   private _entities: Entity[] = []
   private _bomb: Bomb
   private _playerDrawComponent: PlayerDrawComponent
+  private _isAlive = true
 
   public get Entities(): Entity[] {
     return this._entities
   }
 
+  get IsAlive(): boolean {
+    return this._isAlive
+  }
+
+  set IsAlive(value: boolean) {
+    this._isAlive = value
+  }
+
   public Move(x: number, y: number): void {
     const currentPos = this._currentNodeIdx
+    const currentNode = this._grid.Nodes[currentPos]
+    currentNode.BuildState = BuildState.none
+    currentNode.Player = undefined
     const dim = Settings.grid.dimension
     const currX = currentPos % dim
     const currY = Math.floor(currentPos / dim)
@@ -28,19 +41,13 @@ export class Player extends Entity {
     if (currX === dim - 1 && x === 1) return
 
     this._currentNodeIdx = currentPos + x + y * dim
-    const blockX = currX + x
-    const blockY = currY + y
-    if (
-      blockY % 2 === 1 &&
-      blockX > 0 &&
-      blockX < dim - 1 &&
-      this._currentNodeIdx > dim &&
-      this._currentNodeIdx < dim * dim - dim
-    ) {
+    if (this._grid.Nodes[this._currentNodeIdx].BuildState !== BuildState.none) {
       this._currentNodeIdx = currentPos
     }
 
     const nextNode = this._grid.Nodes[this._currentNodeIdx]
+    nextNode.BuildState = BuildState.player
+    nextNode.Player = this
     this._locomotionComponent.Node = nextNode
   }
 

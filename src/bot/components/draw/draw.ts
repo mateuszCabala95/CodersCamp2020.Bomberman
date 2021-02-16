@@ -1,19 +1,19 @@
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
-import { Boot } from "../../boot"
+import { Bot } from "../../bot"
 import { Settings } from "../../../settings"
 
-export class BootDrawComponent implements IComponent {
-  public Entity: Boot
+export class BotDrawComponent implements IComponent {
+  public Entity: Bot
 
-  constructor(entity: Boot) {
+  constructor(entity: Bot) {
     this.Entity = entity
   }
 
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a player that has no Position")
+      throw new Error("Attempt to draw a bot that has no Position")
     }
 
     return position
@@ -25,7 +25,9 @@ export class BootDrawComponent implements IComponent {
 
   public Update(): void {
     this.Clear()
-    this.Draw()
+    if (this.Entity.IsAlive) {
+      this.Draw()
+    }
   }
 
   private Draw(): void {

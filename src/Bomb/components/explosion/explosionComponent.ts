@@ -2,7 +2,7 @@ import { IComponent, Vector2D } from "../../../utils"
 import { Bomb } from "../../bomb"
 import { Settings } from "../../../settings"
 import { Grid } from "../../../grid"
-import { Node } from "../../../node"
+import { BuildState, Node } from "../../../node"
 import { CanvasLayer } from "../../../canvas-layer"
 
 export default class ExplosionComponent implements IComponent {
@@ -39,6 +39,15 @@ export default class ExplosionComponent implements IComponent {
       })
       setTimeout(() => {
         explosionNodes.forEach((node) => {
+          if (node.BuildState === BuildState.ground) {
+            node.BuildState = BuildState.none
+          }
+          if (node.Player) {
+            node.Player.IsAlive = false
+          }
+          if (node.Bot) {
+            node.Bot.IsAlive = false
+          }
           this.Clear(node.Start)
         })
       }, 500)
@@ -52,12 +61,54 @@ export default class ExplosionComponent implements IComponent {
     const x = nodeIdx % boardDim
     const y = Math.floor(nodeIdx / boardDim)
 
-    for (let i = Math.max(x - 2, 0); i <= Math.min(x + 2, boardDim - 1); i++) {
-      res.add(this._grid.Nodes[i + y * boardDim])
+    res.add(this._grid.Nodes[x + y * boardDim])
+
+    for (let i = x; i >= Math.max(x - 2, 0); i--) {
+      const currentNode = this._grid.Nodes[i + y * boardDim]
+      if (currentNode.BuildState === BuildState.block) {
+        break
+      } else if (currentNode.BuildState === BuildState.ground) {
+        res.add(currentNode)
+        break
+      } else {
+        res.add(currentNode)
+      }
     }
 
-    for (let i = Math.max(y - 2, 0); i <= Math.min(y + 2, boardDim - 1); i++) {
-      res.add(this._grid.Nodes[x + i * boardDim])
+    for (let i = y; i >= Math.max(y - 2, 0); i--) {
+      const currentNode = this._grid.Nodes[x + i * boardDim]
+      if (currentNode.BuildState === BuildState.block) {
+        break
+      } else if (currentNode.BuildState === BuildState.ground) {
+        res.add(currentNode)
+        break
+      } else {
+        res.add(currentNode)
+      }
+    }
+
+    for (let i = x; i <= Math.min(x + 2, boardDim - 1); i++) {
+      const currentNode = this._grid.Nodes[i + y * boardDim]
+      if (currentNode.BuildState === BuildState.block) {
+        break
+      } else if (currentNode.BuildState === BuildState.ground) {
+        res.add(currentNode)
+        break
+      } else {
+        res.add(currentNode)
+      }
+    }
+
+    for (let i = y; i <= Math.min(y + 2, boardDim - 1); i++) {
+      const currentNode = this._grid.Nodes[x + i * boardDim]
+      if (currentNode.BuildState === BuildState.block) {
+        break
+      } else if (currentNode.BuildState === BuildState.ground) {
+        res.add(currentNode)
+        break
+      } else {
+        res.add(currentNode)
+      }
     }
 
     return Array.from(res)
