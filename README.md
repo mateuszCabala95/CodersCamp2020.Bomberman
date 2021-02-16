@@ -23,9 +23,9 @@ $ npm start
 ## How to Play
 ### First we need to choose number of players
 
-![one player]("./.github/images/player1.png")
+![one player](".github/images/player1.png")
 
-![two players]("./.github/images/player2.png")
+![two players](".github/images/player2.png")
 
 ### Player1
 * Arrows - Player movement
