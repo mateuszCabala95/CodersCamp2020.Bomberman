@@ -33,6 +33,7 @@ export default class MainPage {
   }
 
   private initEventListeners = (): void => {
+    localStorage.clear()
     this.getPlayer1Name()
     this.getPlayer2Name()
     this.checkIs2Players()

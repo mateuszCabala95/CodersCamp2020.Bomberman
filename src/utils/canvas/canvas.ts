@@ -36,7 +36,10 @@ export class Canvas implements IAwake {
     canvas.setAttribute("width", `${this.Size.x}px`)
     canvas.setAttribute("height", `${this.Size.y}px`)
 
-    document.body.appendChild(canvas)
+    const gameContainer = document.getElementById("gameboard")
+
+    gameContainer && gameContainer.appendChild(canvas)
+
     this._elm = canvas
 
     const ctx = this._elm.getContext("2d")

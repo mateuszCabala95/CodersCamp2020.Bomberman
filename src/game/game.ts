@@ -56,18 +56,29 @@ export class Game extends Entity {
       } else {
         clearInterval(countdown)
       }
+      if (seconds == "0") {
+        document.body.innerHTML = ""
+      }
     }, 1000)
+    if (seconds == "0") {
+      document.body.innerHTML = ""
+    }
   }
 
   showPlayersNamesOnSidePanel(): void {
     const player1name = document.getElementById("player1")
     const player2name = document.getElementById("player2")
+    const player2div = document.querySelector("#player2-box")
 
     if (player1name) {
       player1name.textContent = localStorage.getItem("Player1Name")
     }
-    if (player2name) {
+    if (localStorage.getItem("Player2Name") && player2name) {
       player2name.textContent = localStorage.getItem("Player2Name")
+    } else {
+      if (player2div && player2div.parentNode) {
+        player2div.parentNode.removeChild(player2div)
+      }
     }
   }
 

@@ -39,6 +39,7 @@ export class Player extends Entity {
     ) {
       this._currentNodeIdx = currentPos
     }
+
     const nextNode = this._grid.Nodes[this._currentNodeIdx]
     this._locomotionComponent.Node = nextNode
   }

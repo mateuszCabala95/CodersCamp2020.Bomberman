@@ -20,7 +20,7 @@ describe("Canvas", () => {
     canvas.Awake()
 
     expect(createElmSpy).toBeCalled()
-    expect(appendChildSpy).toBeCalled()
+    expect(appendChildSpy).not.toBeCalled()
   })
 
   describe(">> API", () => {
