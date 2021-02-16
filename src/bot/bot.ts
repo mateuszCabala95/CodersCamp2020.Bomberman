@@ -1,12 +1,12 @@
 import { Entity, Vector2D } from "../utils"
 import { Team } from "../team"
 import { Settings } from "../settings"
-import { BootDrawComponent, BootLocomotionComponent } from "./components"
+import { BotDrawComponent, BotLocomotionComponent } from "./components"
 import { Grid } from "../grid"
 import { BuildState } from "../node"
 
 export class Bot extends Entity {
-  private readonly _locomotionComponent: BootLocomotionComponent
+  private readonly _locomotionComponent: BotLocomotionComponent
   private readonly _grid: Grid
   private _currentNodeIdx: number
   private _isAlive = true
@@ -62,7 +62,7 @@ export class Bot extends Entity {
   constructor(public readonly Team: Team, grid: Grid, startNodeIdx: number) {
     super()
 
-    this._locomotionComponent = new BootLocomotionComponent()
+    this._locomotionComponent = new BotLocomotionComponent()
     this._grid = grid
     this._locomotionComponent.Node = grid.Nodes[startNodeIdx]
     this._currentNodeIdx = startNodeIdx
@@ -70,7 +70,7 @@ export class Bot extends Entity {
 
   public Awake(): void {
     this.AddComponent(this._locomotionComponent)
-    this.AddComponent(new BootDrawComponent(this))
+    this.AddComponent(new BotDrawComponent(this))
 
     super.Awake()
     this.Move()

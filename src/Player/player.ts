@@ -12,6 +12,7 @@ export class Player extends Entity {
   private _entities: Entity[] = []
   private _bomb: Bomb
   private _playerDrawComponent: PlayerDrawComponent
+  private _isAlive = true
 
   public get Entities(): Entity[] {
     return this._entities

@@ -3,7 +3,7 @@ import { CanvasLayer } from "../../../canvas-layer"
 import { Bot } from "../../bot"
 import { Settings } from "../../../settings"
 
-export class BootDrawComponent implements IComponent {
+export class BotDrawComponent implements IComponent {
   public Entity: Bot
 
   constructor(entity: Bot) {
@@ -13,7 +13,7 @@ export class BootDrawComponent implements IComponent {
   private get Position(): Vector2D {
     const position = this.Entity.Position
     if (!position) {
-      throw new Error("Attempt to draw a player that has no Position")
+      throw new Error("Attempt to draw a bot that has no Position")
     }
 
     return position

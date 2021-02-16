@@ -1,6 +1,6 @@
-import { Node } from "../node"
-import { Vector2D } from "../../utils"
-import { BuildState } from "../components"
+import { Node } from "../../node"
+import { Vector2D } from "../../../utils"
+import { BuildState } from "../../components"
 
 export const mockNodeFactory = (
   start = new Vector2D(0, 0),

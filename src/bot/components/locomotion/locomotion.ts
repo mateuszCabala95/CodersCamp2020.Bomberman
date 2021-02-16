@@ -2,7 +2,7 @@ import { IComponent, Vector2D } from "../../../utils"
 import { Bot } from "../../bot"
 import { Node } from "../../../node"
 
-export class BootLocomotionComponent implements IComponent {
+export class BotLocomotionComponent implements IComponent {
   public Entity!: Bot
 
   private _node: Node | null = null
