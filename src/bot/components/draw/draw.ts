@@ -1,12 +1,12 @@
 import { IComponent, Vector2D } from "../../../utils"
 import { CanvasLayer } from "../../../canvas-layer"
-import { Boot } from "../../boot"
+import { Bot } from "../../bot"
 import { Settings } from "../../../settings"
 
 export class BootDrawComponent implements IComponent {
-  public Entity: Boot
+  public Entity: Bot
 
-  constructor(entity: Boot) {
+  constructor(entity: Bot) {
     this.Entity = entity
   }
 
@@ -25,7 +25,9 @@ export class BootDrawComponent implements IComponent {
 
   public Update(): void {
     this.Clear()
-    this.Draw()
+    if (this.Entity.IsAlive) {
+      this.Draw()
+    }
   }
 
   private Draw(): void {

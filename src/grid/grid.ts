@@ -1,5 +1,5 @@
 import { Entity, Vector2D } from "../utils"
-import { Node } from "../node"
+import { BuildState, Node } from "../node"
 import { Settings } from "../settings"
 
 export class Grid extends Entity {
@@ -43,10 +43,12 @@ export class Grid extends Entity {
         const end = new Vector2D(start.x + size, start.y + size)
         let node: Node
         const index = new Vector2D(x, y)
-        if (y % 2 === 1 && x > 0 && x < 8) {
-          node = new Node(start, end, index, true)
+        if (y % 2 === 1 && x % 2 === 1 && x > 0 && x < 8) {
+          node = new Node(start, end, index, BuildState.block)
+        } else if (y % 2 === 1 && x % 2 === 0 && x > 0 && x < 8) {
+          node = new Node(start, end, index, BuildState.ground)
         } else {
-          node = new Node(start, end, index, false)
+          node = new Node(start, end, index, BuildState.none)
         }
         this._nodes.push(node)
       }

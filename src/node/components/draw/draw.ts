@@ -2,6 +2,7 @@ import { IComponent } from "../../../utils"
 import { Node } from "../../node"
 import { Settings } from "../../../settings"
 import { CanvasLayer } from "../../../canvas-layer"
+import { BuildState } from "../build-state"
 
 export class NodeDrawComponent implements IComponent {
   get Entity(): Node {
@@ -38,6 +39,15 @@ export class NodeDrawComponent implements IComponent {
       this._Entity.Size,
       Settings.grid.color
     )
+    switch (this.Entity.BuildState) {
+      case BuildState.block:
+        CanvasLayer.Foreground.DrawBlock(this.Entity.Center)
+        break
+      case BuildState.ground:
+        CanvasLayer.Foreground.DrawGround(this.Entity.Center)
+        break
+      default:
+    }
   }
 
   private Clear(): void {

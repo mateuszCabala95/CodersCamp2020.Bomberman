@@ -1,14 +1,23 @@
 import { Entity, Vector2D } from "../utils"
 import { Team } from "../team"
 import { Settings } from "../settings"
-import { BootDrawComponent } from "./components/index"
-import { BootLocomotionComponent } from "./components/index"
+import { BootDrawComponent, BootLocomotionComponent } from "./components"
 import { Grid } from "../grid"
+import { BuildState } from "../node"
 
-export class Boot extends Entity {
+export class Bot extends Entity {
   private readonly _locomotionComponent: BootLocomotionComponent
   private readonly _grid: Grid
   private _currentNodeIdx: number
+  private _isAlive = true
+
+  get IsAlive(): boolean {
+    return this._isAlive
+  }
+
+  set IsAlive(value: boolean) {
+    this._isAlive = value
+  }
 
   public Move(): void {
     setInterval(() => {
@@ -20,6 +29,9 @@ export class Boot extends Entity {
       ]
       const rand = Math.floor(Math.random() * 4)
       const currentPos = this._currentNodeIdx
+      const currentNode = this._grid.Nodes[this._currentNodeIdx]
+      currentNode.BuildState = BuildState.none
+      currentNode.Bot = undefined
       const dim = Settings.grid.dimension
       const currX = currentPos % dim
       const currY = Math.floor(currentPos / dim)
@@ -30,18 +42,15 @@ export class Boot extends Entity {
       if (currX === dim - 1 && move[rand].x === 1) return
 
       this._currentNodeIdx = currentPos + move[rand].x + move[rand].y * dim
-      const blockX = currX + move[rand].x
-      const blockY = currY + move[rand].y
       if (
-        blockY % 2 === 1 &&
-        blockX > 0 &&
-        blockX < dim - 1 &&
-        this._currentNodeIdx > dim &&
-        this._currentNodeIdx < dim * dim - dim
+        this._grid.Nodes[this._currentNodeIdx].BuildState !== BuildState.none
       ) {
         this._currentNodeIdx = currentPos
       }
       const nextNode = this._grid.Nodes[this._currentNodeIdx]
+      nextNode.BuildState = BuildState.player
+      nextNode.Bot = this
+
       this._locomotionComponent.Node = nextNode
     }, 1000)
   }

@@ -83,7 +83,13 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
-  public FillBlock(): void {
+  public DrawBlock(center: Vector2D): void {
+    this._ctx.beginPath()
+    this._ctx.drawImage(block, center.x - 40, center.y - 40)
+    this._ctx.fill()
+  }
+
+  public DrawBlocks(): void {
     this._ctx.beginPath()
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -95,7 +101,13 @@ export class Canvas implements IAwake {
     this._ctx.fill()
   }
 
-  public FillGround(): void {
+  public DrawGround(center: Vector2D): void {
+    this._ctx.beginPath()
+    this._ctx.drawImage(ground, center.x - 40, center.y - 40)
+    this._ctx.fill()
+  }
+
+  public DrawGrounds(): void {
     this._ctx.beginPath()
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {

@@ -2,7 +2,7 @@
 import { Entity } from "../utils"
 import { Grid } from "../grid"
 import { Player } from "../Player"
-import { Boot } from "../boot"
+import { Bot } from "../bot"
 import { Team } from "../team"
 import { GameInputComponent } from "./components"
 
@@ -23,12 +23,12 @@ export class Game extends Entity {
       this._entities.push(new Player(Team.B, grid, grid.Nodes.length - 1))
     }
     this._entities.push(
-      new Boot(
+      new Bot(
         Team.B,
         grid,
         grid.Nodes.length - Math.floor(Math.random() * 63) + 1
       ),
-      new Boot(
+      new Bot(
         Team.B,
         grid,
         grid.Nodes.length - Math.floor(Math.random() * 63) + 1
